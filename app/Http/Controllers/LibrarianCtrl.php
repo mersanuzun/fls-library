@@ -7,8 +7,8 @@ use App\Odunc;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class LibrarianCtrl extends Controller
-{
+class LibrarianCtrl extends Controller{
+    public $err = null;
     public function index(){
         $undelivered = [];
         $today = date("Y-m-d");
@@ -34,6 +34,7 @@ class LibrarianCtrl extends Controller
             $this->finishCirculation($r);
         }
         return view("librarian.circulation");
+        //return redirect("/management/librarian/circulation");
     }
     public function startCirculation($r){
         $bookNo = $r->input("bookNo");
@@ -48,7 +49,7 @@ class LibrarianCtrl extends Controller
                         ->where("OgrenciNo", "=", $studentNo)->get();
         if ($studentStatus){
             if ($bookStatus){
-                if ($bookStatus[0]->VarMi == 0) $err = "The book is not in library.";
+                if ($bookStatus[0]->VarMi == 0) $this->err = "The book is not in library.";
                 else {
                     DB::table("odunc")
                             ->insert(
@@ -59,10 +60,10 @@ class LibrarianCtrl extends Controller
                         ->update(["VarMi"=>0]);
                 }
             }else {
-                $err = "There is no such that book.";
+                $this->err = "There is no such that book.";
             }    
         }else {
-            $err = "There is no such that student.";
+            $this->err = "There is no such that student.";
         }
         
     }
@@ -71,12 +72,33 @@ class LibrarianCtrl extends Controller
         $bookLevel = $r->input("deliveredBookLevel");
         $studentNo = $r->input("deliveredStudentNo");
         $finishDate = $r->input("finishDate");
-        DB::table("odunc")
-            ->where("OgrenciNo", DB::raw($studentNo . " and KitapSeviyeNo = ". $bookLevel
-                                        . " and KitapNo = " . $bookNo))
-            ->update(["TeslimEdilenTarihi"=>$finishDate]);
-        DB::table("kitap_bilgi")
-            ->where("KitapNo", DB::raw($bookNo . " and KitapSeviyeNo = " . $bookLevel))
-            ->update(["VarMi"=>1]);
+        $studentStatus = DB::table("ogrenci_bilgi")
+                        ->where("OgrenciNo", "=", $studentNo)->get();
+        $bookStatus = DB::table("kitap_bilgi")
+                        ->where("KitapNo", DB::raw($bookNo . 
+                                " and KitapSeviyeNo = " . $bookLevel))->get();
+        if ($studentStatus){
+            if ($bookStatus){
+                if ($bookStatus[0]->VarMi == 1) $this->err = "The book is in library.";
+                else {
+                    $finishBook = DB::table("odunc")
+                        ->where("OgrenciNo", DB::raw($studentNo . " and KitapSeviyeNo = ". $bookLevel. " and KitapNo = " . $bookNo))
+                        ->orderBy("OduncNo", "desc")->get();
+                    DB::table("odunc")
+                        ->where("OduncNo", "=", $finishBook[0]->OduncNo)
+                        ->Update(["TeslimEdilenTarihi"=>$finishDate]);
+                    DB::table("kitap_bilgi")
+                        ->where("KitapNo", DB::raw($bookNo . " and KitapSeviyeNo = " . $bookLevel))
+                        ->update(["VarMi"=>1]);
+                }
+            }else {
+                $this->err = "There is no such that book.";
+            }
+        }else{
+            $this->err = "There is no such that student";
+        }
+        
+        
+        
     }
 }

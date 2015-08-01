@@ -5,6 +5,9 @@
 
 
 @section("content")
+   @if (count($undelivered) === 0)
+       <span>There is no undelivered book.</span>
+   @else
     <table>
         <tr>
            <th>Student Number</th>
@@ -23,4 +26,5 @@
         </tr>    
         @endforeach
     </table>
+    @endif
 @endsection
