@@ -1,0 +1,82 @@
+<?php
+
+namespace App\Http\Controllers;
+use DB;
+use Illuminate\Http\Request;
+use App\Odunc;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class LibrarianCtrl extends Controller
+{
+    public function index(){
+        $undelivered = [];
+        $today = date("Y-m-d");
+        $delivered = DB::table("odunc")
+                    ->join("ogrenci_bilgi", "ogrenci_bilgi.OgrenciNo", "=", "odunc.OgrenciNo")
+                    ->join("kitap_bilgi", "odunc.KitapNo", "=", 
+                           DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
+                    ->where("PlanlananVerilisTarihi", "<", $today)
+                    ->get();
+        foreach($delivered as $data){
+            if ($data->TeslimEdilenTarihi) continue;
+            else array_push($undelivered, $data);
+        }
+        return view("librarian.index", ["undelivered" => $undelivered]);
+    }
+    public function circulation(){
+        return view("librarian.circulation");
+    }
+    public function circulationControl(Request $r){
+        if ($r->input("startCirculation")){
+            $this->startCirculation($r);
+        }elseif ($r->input("finishCirculation")){
+            $this->finishCirculation($r);
+        }
+        return view("librarian.circulation");
+    }
+    public function startCirculation($r){
+        $bookNo = $r->input("bookNo");
+        $bookLevel = $r->input("bookLevel");
+        $studentNo = $r->input("studentNo");
+        $startDate = $r->input("startDate");
+        $estimatedFinishDate = $r->input("estimatedFinishDate");
+        $bookStatus = DB::table("kitap_bilgi")
+                        ->where("KitapNo", DB::raw($bookNo . 
+                                " and KitapSeviyeNo = " . $bookLevel))->get();
+        $studentStatus = DB::table("ogrenci_bilgi")
+                        ->where("OgrenciNo", "=", $studentNo)->get();
+        if ($studentStatus){
+            if ($bookStatus){
+                if ($bookStatus[0]->VarMi == 0) $err = "The book is not in library.";
+                else {
+                    DB::table("odunc")
+                            ->insert(
+                    ["OgrenciNo"=>$studentNo, "KitapNo"=>$bookNo, "KitapSeviyeNo"=>$bookLevel,
+                     "VerilisTarihi"=>$startDate, "PlanlananVerilisTarihi"=>$estimatedFinishDate]);
+                    DB::table("kitap_bilgi")
+                        ->where("KitapNo", DB::raw($bookNo . " and KitapSeviyeNo = " . $bookLevel))
+                        ->update(["VarMi"=>0]);
+                }
+            }else {
+                $err = "There is no such that book.";
+            }    
+        }else {
+            $err = "There is no such that student.";
+        }
+        
+    }
+    public function finishCirculation($r){
+        $bookNo = $r->input("deliveredBookNo");
+        $bookLevel = $r->input("deliveredBookLevel");
+        $studentNo = $r->input("deliveredStudentNo");
+        $finishDate = $r->input("finishDate");
+        DB::table("odunc")
+            ->where("OgrenciNo", DB::raw($studentNo . " and KitapSeviyeNo = ". $bookLevel
+                                        . " and KitapNo = " . $bookNo))
+            ->update(["TeslimEdilenTarihi"=>$finishDate]);
+        DB::table("kitap_bilgi")
+            ->where("KitapNo", DB::raw($bookNo . " and KitapSeviyeNo = " . $bookLevel))
+            ->update(["VarMi"=>1]);
+    }
+}

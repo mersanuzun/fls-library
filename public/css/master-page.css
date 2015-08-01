@@ -1,0 +1,25 @@
+.container {
+    width: 80%;
+    height: 500px;
+    background-color : aqua;
+    margin: auto;
+}
+
+.content {
+    border : solid 1px;
+    display : inline-block;
+    margin : 10px;
+    width : 72%;
+    float: left;
+    height: 90%;
+    padding : 5px;
+    
+}
+.menu {
+    padding : 5px;
+    margin : 10px;
+    width : 20%;
+    height: 90%;
+    border : solid 1px;
+    display : inline-block;
+}

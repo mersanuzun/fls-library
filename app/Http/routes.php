@@ -10,7 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get("/", function(){
+    return view("main");
 });
+Route::get("/management/librarian", "LibrarianCtrl@index");
+Route::get("/management/librarian/circulation", "LibrarianCtrl@circulation");
+Route::post("/management/librarian/circulation", "LibrarianCtrl@circulationControl");
