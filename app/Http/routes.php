@@ -13,6 +13,12 @@
 Route::get("/", function(){
     return view("main");
 });
+
+// Librarian Page
 Route::get("/management/librarian", "LibrarianCtrl@index");
 Route::get("/management/librarian/circulation", "LibrarianCtrl@circulation");
 Route::post("/management/librarian/circulation", "LibrarianCtrl@circulationControl");
+
+// Admin Page
+Route::get("/management/admin", "AdminCtrl@index");
+Route::get("/management/admin/user-management", "AdminCtrl@userManagement");
