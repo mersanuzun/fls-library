@@ -1,7 +1,6 @@
-@extends("layouts.master")
+@extends("layouts.main")
 
 @section("title", "Main")
 @section("content")
-
-ersan
+Bu sayfa mahmutu bekliyor
 @endsection

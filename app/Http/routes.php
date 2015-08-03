@@ -13,8 +13,25 @@
 Route::get("/", function(){
     return view("main");
 });
+
+// Librarian Page
 Route::get("/management/librarian", "LibrarianCtrl@index");
 Route::get("/management/librarian/circulation", "LibrarianCtrl@circulation");
 Route::post("/management/librarian/circulation", "LibrarianCtrl@circulationControl");
 Route::get("/auth/login", "Auth\AuthController@getLogin");
 Route::get("management/librarian/deneme", "LibrarianCtrl@denemeDB");
+Route::get("management/librarian/deneme", "LibrarianCtrl@denemeDB");
+
+// Admin Page
+Route::get("/management/admin", "AdminCtrl@index");
+Route::get("/management/admin/reports", "AdminCtrl@reports");
+Route::get("/management/admin/user-management", "AdminCtrl@userManagement");
+Route::get("/management/admin/user-management/add", "AdminCtrl@userManagementAdd");
+Route::post("/management/admin/user-management/add", "AdminCtrl@postUserManagementAdd");
+
+//add post method 
+Route::get("/management/admin/user-management/edit/{id}", "AdminCtrl@userManagementEdit");
+Route::post("/management/admin/user-management/edit/{id}", "AdminCtrl@postUserManagementEdit");
+//edit post method 
+// remove post metod
+Route::get("/management/admin/user-management/remove/{id}", "AdminCtrl@userManagementRemove");
