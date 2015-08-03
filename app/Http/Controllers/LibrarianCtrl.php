@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Odunc;
+use App\Student;
+use App\Book;
+use App\BookLevel;
+use App\Department;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -33,8 +37,8 @@ class LibrarianCtrl extends Controller{
         }elseif ($r->input("finishCirculation")){
             $this->finishCirculation($r);
         }
-        return view("librarian.circulation");
-        //return redirect("/management/librarian/circulation");
+        //return view("librarian.circulation");
+        return redirect("/management/librarian/circulation")->with("err", "ersan");
     }
     public function startCirculation($r){
         $bookNo = $r->input("bookNo");
@@ -49,7 +53,7 @@ class LibrarianCtrl extends Controller{
                         ->where("OgrenciNo", "=", $studentNo)->get();
         if ($studentStatus){
             if ($bookStatus){
-                if ($bookStatus[0]->VarMi == 0) $this->err = "The book is not in library.";
+                if ($bookStatus[0]->VarMi == 0) $message = "The book is not in library.";
                 else {
                     DB::table("odunc")
                             ->insert(
@@ -58,14 +62,15 @@ class LibrarianCtrl extends Controller{
                     DB::table("kitap_bilgi")
                         ->where("KitapNo", DB::raw($bookNo . " and KitapSeviyeNo = " . $bookLevel))
                         ->update(["VarMi"=>0]);
+                    $message = "The process is succesfull";
                 }
             }else {
-                $this->err = "There is no such that book.";
+                $message = "There is no such that book.";
             }    
         }else {
-            $this->err = "There is no such that student.";
+            $message = "There is no such that student.";
         }
-        
+        session(["message" => $message]);
     }
     public function finishCirculation($r){
         $bookNo = $r->input("deliveredBookNo");
@@ -90,15 +95,18 @@ class LibrarianCtrl extends Controller{
                     DB::table("kitap_bilgi")
                         ->where("KitapNo", DB::raw($bookNo . " and KitapSeviyeNo = " . $bookLevel))
                         ->update(["VarMi"=>1]);
+                    $message = "The process is succesfull";
                 }
             }else {
-                $this->err = "There is no such that book.";
+                $message = "There is no such that book.";
             }
         }else{
-            $this->err = "There is no such that student";
+            $message = "There is no such that student";
         }
-        
-        
-        
+        session()->flash("message", $message);
+    }
+    public function denemeDB(){
+        session(["message"=>"ersan"]);
+        return redirect("/auth/login")->with("message", "ersan");
     }
 }

@@ -18,31 +18,31 @@
             <tr>
                 <td>Level</td>
                 <td>
-                    <input type="text" name="bookLevel">
+                    <input type="text" name="bookLevel" required="">
                 </td>
             </tr>
             <tr>
                 <td>Student's No</td>
                 <td>
-                    <input type="text" name="studentNo">
+                    <input type="text" name="studentNo" required="">
                 </td>
             </tr>
             <tr>
                 <td>Circulation Start Date</td>
                 <td>
-                    <input type="date" name="startDate">
+                    <input type="date" name="startDate" required="">
                 </td>
             </tr>
             <tr>
                 <td>Circulation Estimated Finish Date</td>
                 <td>
-                    <input type="date" name="estimatedFinishDate">
+                    <input type="date" name="estimatedFinishDate" required="">
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" name="startCirculation">
+                    <input type="submit" name="startCirculation" value="Start Circulation">
                 </td>
             </tr>
         </table>
@@ -93,5 +93,10 @@
             </tr>
         </table>
    </form>
+   <div id="message">
+       @if (session("message"))
+           {{session("message")}}
+       @endif
+   </div>
 </div>
 @endsection

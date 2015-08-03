@@ -1,6 +1,8 @@
 <html>
     <head>
         <title>@yield('title')</title>
+        <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap.css') }}">
+
         <link rel="stylesheet" href="{{ URL::asset('/css/master-page.css') }}">
     </head>
     <body>
@@ -9,8 +11,19 @@
             @yield('content')  
           </div>
           <div class="menu">
-               <a href="/management/librarian">Main Page</a>
-               <a href="/management/librarian/circulation">Circulation</a>
+              <ul >
+                  <li>
+                      <a href="/management/librarian">Main Page</a>
+                  </li>
+                  <li>
+                     <a href="/management/librarian/circulation">Circulation</a>       
+                  </li>
+                  <li>
+                      <a href="/auth/login"> Login </a>
+                  </li>
+              </ul>
+               
+               
           </div>
         </div>
     </body>
