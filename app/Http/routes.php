@@ -22,3 +22,9 @@ Route::post("/management/librarian/circulation", "LibrarianCtrl@circulationContr
 // Admin Page
 Route::get("/management/admin", "AdminCtrl@index");
 Route::get("/management/admin/user-management", "AdminCtrl@userManagement");
+Route::get("/management/admin/user-management/add", "AdminCtrl@userManagementAdd");
+//add post method 
+Route::get("/management/admin/user-management/edit/{id}", "AdminCtrl@userManagementEdit");
+//edit post method 
+// remove post metod
+Route::get("/management/admin/user-management/remove/{id}", "AdminCtrl@userManagementEdit");

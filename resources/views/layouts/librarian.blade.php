@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>@yield('title')</title>
-        <link rel="stylesheet" href="{{ URL::asset('/css/master-page.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('/css/librarian-page.css') }}">
     </head>
     <body>
         <div class="container">

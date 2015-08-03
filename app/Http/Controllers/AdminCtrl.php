@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class AdminCtrl extends Controller{
     public $err = null; // using for error handling
@@ -25,19 +26,27 @@ class AdminCtrl extends Controller{
     
     //Admin User Management Page
     public function userManagement(){
-        return view("admin.user-manage");
+        $users = DB::table('kullanici_bilgi')
+                ->where('KullaniciTuruNo', '!=', '1')
+                ->get();
+        
+        return view("admin.user-manage", ['users' => $users]);
     }
     
     public function userManagementAdd(){
-        
+        return view("admin.user-manage-add");
     }
     
-    public function userManagementEdit(){
+    public function userManagementEdit($id){
+        $user = DB::table('kullanici_bilgi')
+                ->where('KullaniciNo', "=", $id)
+                ->get();
         
+        return view("admin.user-manage-edit", ['user' => $user[0]]);
     }
     
-    public function userManagementRemove(){
-        
+    public function userManagementRemove($id){
+        return view("admin.user-manage-remove");
     }
 
 }
