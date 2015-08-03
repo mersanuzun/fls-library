@@ -10,6 +10,7 @@
                 <div class="menu">
                     <a href="/management/admin">Main Page</a>
                     <a href="/management/admin/user-management">User Management</a>
+                    <a href="/management/admin/reports">Reports</a>
                 </div>
             </div>
         </div>

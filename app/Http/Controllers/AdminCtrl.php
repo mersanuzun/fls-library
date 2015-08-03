@@ -22,6 +22,7 @@ class AdminCtrl extends Controller{
     public function reports()
     {
         // to do 
+        return view("admin.reports");
     }
     
     //Admin User Management Page
@@ -40,9 +41,9 @@ class AdminCtrl extends Controller{
     public function userManagementEdit($id){
         $user = DB::table('kullanici_bilgi')
                 ->where('KullaniciNo', "=", $id)
-                ->get();
+                ->first();
         
-        return view("admin.user-manage-edit", ['user' => $user[0]]);
+        return view("admin.user-manage-edit", ['user' => $user]);
     }
     
     public function userManagementRemove($id){

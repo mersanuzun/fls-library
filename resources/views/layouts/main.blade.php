@@ -5,14 +5,16 @@
     </head>
     <body>
         <div class="container">
-          <div class="content">
-            @yield('content')  
-          </div>
-          <div class="menu">
-               <a href="/">Main Page</a>
-               <a href="/faq">FAQ</a>
-               <a href="/login">Log in</a>
-          </div>
+            <div class="menu">
+                <a href="/">Main Page</a>
+                <a href="/faq">FAQ</a>
+                <a href="/login">Log in</a>
+            </div>
+
+            <div class="content">
+                @yield('content')  
+            </div>
+
         </div>
     </body>
 </html>
