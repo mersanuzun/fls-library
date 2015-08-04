@@ -13,7 +13,7 @@
        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <fieldset>
             <legend>User's</legend>
-            <div class="error-user-management">
+            <div class="error-user-management" style="text-align:center;">
                 @if(session("message"))
                     {{session("message")}}
                 @endif

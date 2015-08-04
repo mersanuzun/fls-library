@@ -6,7 +6,7 @@
 
 @section("content")
 <div class="table-responsive">
-    <h3> User List <span class="label label-danger"> --0-- </span></h3>
+    <h3> User List <span class="label label-danger"> {{count($users)}} </span></h3>
     <a href="user-management/add">
         <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add User </button>
     </a>

@@ -13,7 +13,7 @@ class AdminCtrl extends Controller{
     
     // Admin Index Page
     public function index(){
-        
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         return view("admin.index");
         
     }
@@ -21,12 +21,13 @@ class AdminCtrl extends Controller{
     // Admin Reports Page
     public function reports()
     {
-        // to do 
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         return view("admin.reports");
     }
     
     //Admin User Management Page
     public function userManagement(){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $users = DB::table('kullanici_bilgi')
                 ->where('KullaniciTuruNo', '!=', '1')
                 ->get();
@@ -35,6 +36,7 @@ class AdminCtrl extends Controller{
     }
     
     public function userManagementAdd(){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         return view("admin.user-manage-add");
     }
     public function postUserManagementAdd(Request $r){

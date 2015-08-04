@@ -18,9 +18,12 @@ Route::get("/", function(){
 Route::get("/management/librarian", "LibrarianCtrl@index");
 Route::get("/management/librarian/circulation", "LibrarianCtrl@circulation");
 Route::post("/management/librarian/circulation", "LibrarianCtrl@circulationControl");
-Route::get("/auth/login", "Auth\AuthController@getLogin");
 Route::get("management/librarian/deneme", "LibrarianCtrl@denemeDB");
 Route::get("management/librarian/deneme", "LibrarianCtrl@denemeDB");
+// Login page
+Route::get("/auth/login", "LoginCtrl@getLogin");
+Route::post("/auth/login", "LoginCtrl@postLogin");
+Route::get("/auth/logout", "LoginCtrl@getLogout");
 
 // Admin Page
 Route::get("/management/admin", "AdminCtrl@index");

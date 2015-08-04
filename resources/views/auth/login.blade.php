@@ -1,12 +1,13 @@
-@extends("layouts.master")
+@extends("layouts.main")
 @section("title", "Login")
 @section("content")
-<form method="POST" action="/auth/login">
+<div class="login">
+    <form method="POST" action="/auth/login">
     {!! csrf_field() !!}
 
     <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
+        Username
+        <input type="text" name="username">
     </div>
 
     <div>
@@ -22,4 +23,6 @@
         <button type="submit">Login</button>
     </div>
 </form>
+    
+</div>
 @endsection

@@ -10,7 +10,7 @@
        {!! csrf_field() !!}
         <fieldset>
             <legend> Add User </legend>
-            <div class="error">
+            <div class="error" style="text-align:center;">
                 @if (session("message"))
                     {{session("message")}}
                 @endif

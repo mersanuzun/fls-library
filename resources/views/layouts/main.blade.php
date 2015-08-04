@@ -8,7 +8,13 @@
             <div class="menu">
                 <a href="/">Main Page</a>
                 <a href="/faq">FAQ</a>
-                <a href="/login">Log in</a>
+                <a href="/auth/login">
+                    @if (session("username")) 
+                        {{session("username")}}
+                    @else
+                        Login
+                    @endif
+                </a>
             </div>
 
             <div class="content">

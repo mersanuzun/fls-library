@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\Odunc;
-use App\Student;
-use App\Book;
-use App\BookLevel;
-use App\Department;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Http\Controllers\LoginCtrl;
 class LibrarianCtrl extends Controller{
     public $err = null;
     public function index(){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $undelivered = [];
         $today = date("Y-m-d");
         $delivered = DB::table("odunc")
@@ -29,6 +25,7 @@ class LibrarianCtrl extends Controller{
         return view("librarian.index", ["undelivered" => $undelivered]);
     }
     public function circulation(){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         return view("librarian.circulation");
     }
     public function circulationControl(Request $r){
