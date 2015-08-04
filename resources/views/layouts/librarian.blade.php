@@ -6,6 +6,10 @@
         <link rel="stylesheet" href="{{ URL::asset('/css/master-page.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/librarian-page.css') }}">
 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap-min.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('/css/librarian-page.css') }}">
     </head>
     <body>
         <div class="container">
@@ -19,6 +23,15 @@
                   </li>
                   <li>
                      <a href="/management/librarian/circulation">Circulation</a>       
+                  </li>
+                  <li>
+                      <a href="/management/student"> Student Management </a>
+                  </li>
+                  <li>
+                      <a href="/management/department"> Deparment Management </a>
+                  </li>
+                  <li>
+                      <a href="/management/book"> Book Management </a>
                   </li>
                   <li>
                       <a href="/auth/logout"> Logout </a>
