@@ -1,7 +1,9 @@
 <html>
     <head>
         <title>@yield('title')</title>
-        <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap.css') }}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap-min.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/librarian-page.css') }}">
     </head>
     <body>
