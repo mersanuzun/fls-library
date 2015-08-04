@@ -12,7 +12,7 @@
             <tr>
                 <td>Book's No</td>
                 <td>
-                    <input type="text" name="bookNo">
+                    <input type="text" name="bookNo" required="">
                 </td>
             </tr>
             <tr>
@@ -62,7 +62,9 @@
                 </td>
             </tr>
             <tr>
-                <td>Level</td>
+                <td>
+                    <label for="deliveredBookLevel">Level</label>
+                </td>
                 <td>
                     <input type="text" name="deliveredBookLevel">
                 </td>
