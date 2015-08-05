@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
--- Anamakine: 127.0.0.1
--- Üretim Zamanı: 10 Haz 2015, 21:08:00
--- Sunucu sürümü: 5.6.17
--- PHP Sürümü: 5.5.12
+-- Anamakine: localhost
+-- Üretim Zamanı: 05 Ağu 2015, 13:29:40
+-- Sunucu sürümü: 5.6.16
+-- PHP Sürümü: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `bolum_bilgi` (
 --
 
 INSERT INTO `bolum_bilgi` (`BolumKodu`, `BolumAdi`) VALUES
-(109, 'Biyoloji'),
+(0, 'Biyoloji'),
 (205, 'Kamu Yönetimi'),
 (611, 'İngilizce Öğretmenliği'),
 (701, 'İnşaat Mühendisliği'),
@@ -155,7 +155,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (0, 5, 'GOOD DAY, BAD DAY', 'PAUL SHIPTON', 'PENGUIN', 1),
 (0, 6, 'GIRL ON A MOTORCYCLE', 'JOHN ESCOTT', 'OXFORD', 1),
 (0, 7, 'LET ME OUT', 'ANTONIETTE MOSES', 'CAMBRIDGE', 1),
-(0, 8, 'MEET THE MARTIANS', 'STEPHEN RABLEY', 'PENGUIN', 1),
+(0, 8, 'MEET THE MARTIANS', 'STEPHEN RABLEY', 'PENGUIN', 0),
 (0, 9, 'NEWSPAPER CHASE', 'JOHN ESCOTT', 'PENGUIN', 1),
 (0, 10, 'THE LONG ROAD', 'ROD SMITH', 'PENGUIN', 1),
 (0, 11, 'WHAT A LOTTERY!', 'COLIN CAMPBELL', 'CAMBRIDGE', 1),
@@ -256,7 +256,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (0, 106, 'LUCKY BREAK', 'JOHN ESCOTT', 'PENGUIN', 1),
 (0, 107, 'TINKER''S FARM', '', 'PENGUIN', 1),
 (0, 108, 'WHO WANTS TO BE A STAR', 'JULIA ALLEN ', 'PENGUIN', 1),
-(1, 1, 'FUNNY STORIES', 'OXFORD', 'OXFORD', 1),
+(1, 1, 'FUNNY STORIES', 'OXFORD', 'OXFORD', 0),
 (1, 2, 'THE WATERBABIES', 'CHARLES KINGSLEY', 'LONGMAN', 1),
 (1, 3, 'IN THE FRAME', 'POLLY SWEETNAM', 'MACMILLAN', 1),
 (1, 4, 'A SONG FOR BEN', 'SANDRA SLATER', 'STORLINES', 1),
@@ -466,7 +466,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (1, 208, 'PERSUASION', '', '', 1),
 (1, 209, 'THE OLYMPIC PROMISE', '', '', 1),
 (1, 210, 'HANSEL AND GRETEL', '', 'GRIMM BROTHERS', 1),
-(2, 1, 'THE FIRST EMPEROR OF CHINA', 'JANE ROLLASAN', 'PENGUIN', 1),
+(2, 1, 'THE FIRST EMPEROR OF CHINA', 'JANE ROLLASAN', 'PENGUIN', 0),
 (2, 2, 'HAROLD AND MAUDE', 'COLIN HIGGINS', 'EASYREADERS', 1),
 (2, 3, 'STORIES FROM EDGAR ALLAN POE', 'EDGAR ALLAN POE', 'KAPADOKYA', 1),
 (2, 4, 'THE SCARLET PIMPERNEL', 'BARONESS EMMUSKA...', 'PENGUIN', 1),
@@ -680,7 +680,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (2, 212, 'GULLIVER''S TRAVELS', '', 'PENGUIN', 1),
 (2, 213, 'DANTE''S PEAK', '', '', 1),
 (2, 214, 'ROBIN HOOD', 'ERTAN ARDANACI', 'ORIENT ', 1),
-(3, 1, 'FRANKENSTEIN', '', 'OXFORD', 1),
+(3, 1, 'FRANKENSTEIN', '', 'OXFORD', 0),
 (3, 2, 'THE HOUSE BY THE SEA', 'MARY SHELLEY', 'CAMBRIDGE', 1),
 (3, 3, 'WILD COUNTRY', 'PATRICIA ASPINALL', 'CAMBRIDGE', 1),
 (3, 4, 'THE LIFE OF ATATURK', 'MARGARET JOHNSON', 'METRO', 1),
@@ -922,7 +922,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (3, 240, 'TOM SAWYER', 'MARK TWAIN', 'KAPADOKYA', 1),
 (3, 241, 'INCIDENT AT EAGLE ROCK', 'LESLEY SEPHTON', 'BEST', 1),
 (3, 242, 'CITY OF SECRETS', 'JOHN DYSON', 'BEST', 1),
-(4, 1, 'CRIME STORY COLLECTION', '', 'PENGUIN', 1),
+(4, 1, 'CRIME STORY COLLECTION', '', 'PENGUIN', 0),
 (4, 2, 'THE SPECKLED BAND & OTHER...', 'SARA PARETSKY & OTHERS', 'HEINEMANN', 1),
 (4, 3, 'CLOUD COMPANY', 'SIR ARTHUR CONAN DOYLE', 'OXFORD', 1),
 (4, 4, 'THE DREAM & OTHER STORIES', 'CLARE WEST', 'PENGUIN', 1),
@@ -1111,7 +1111,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (4, 186, 'THE CANTERVILLE GHOST AND O. STORIES', 'OSCAR WILDE', 'LONGMAN', 1),
 (4, 187, 'GULLIVER''S TRAVELS', 'JONATHAN SWIFT', 'OXFORD', 1),
 (4, 188, 'CITY OF SECRETS', 'JOHN DYSON', 'BEST', 1),
-(5, 1, 'GREAT EXPECTATIONS', '', 'OXFORD', 1),
+(5, 1, 'GREAT EXPECTATIONS', '', 'OXFORD', 0),
 (5, 2, 'EXPERIENCES OF TERROR', 'CHARLES DICKENS', 'NELSON', 1),
 (5, 3, 'WUTHERING HEIGHTS', 'ROLAND JOHN', 'BLACK CAT', 1),
 (5, 4, 'LITTLE WOMEN', 'EMILY BRONTE', 'KAPADOKYA', 1),
@@ -1216,7 +1216,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (5, 103, 'HEAT AND DUST', '', '', 1),
 (5, 104, 'WUTHERING HEIGHTS', '', '', 1),
 (5, 105, 'THE CONTEMPORARY READER', 'STEPHEN COLBOURN', 'JAMESTOWN', 1),
-(6, 1, 'THE TIME MACHINE', '', 'LONGMAN', 1),
+(6, 1, 'THE TIME MACHINE', '', 'LONGMAN', 0),
 (6, 2, 'BRAVE NEW WORLD', 'H.G. WELLS', 'LONGMAN', 1),
 (6, 3, 'OLIVER TWIST', 'ALDOUS HUXLEY', 'OXFORD', 1),
 (6, 4, 'BRAVE NEW WORLD', 'CHARLES DICKENS', 'LONGMAN', 1),
@@ -1276,7 +1276,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (6, 58, 'SNOW FALLING ON CEDARS', '', 'PENGUIN', 1),
 (6, 59, 'SNOW FALLING ON CEDARS', '', 'PENGUIN', 1),
 (6, 60, 'SNOW FALLING ON CEDARS', '', 'PENGUIN', 1),
-(7, 1, 'ALEXANDER THE GREAT', 'KINGSLEY AMIS', '', 1),
+(7, 1, 'ALEXANDER THE GREAT', 'KINGSLEY AMIS', '', 0),
 (7, 2, 'THE GATE', 'RIANE EISLER', '', 1),
 (7, 3, 'LARGE CLASSES', 'ROB NOLASCO', 'ELTS', 1);
 
@@ -1344,17 +1344,16 @@ CREATE TABLE IF NOT EXISTS `kullanici_bilgi` (
   PRIMARY KEY (`KullaniciNo`),
   UNIQUE KEY `KullaniciAdi_UNIQUE` (`KullaniciAdi`),
   KEY `fk_kullanici_bilgi_kullanici_turu_bilgi1_idx` (`KullaniciTuruNo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Tablo döküm verisi `kullanici_bilgi`
 --
 
 INSERT INTO `kullanici_bilgi` (`KullaniciNo`, `KullaniciTuruNo`, `KullaniciAdi`, `KullaniciSifre`) VALUES
-(1, 1, 'master', 'mastersifre'),
-(2, 2, 'admin', '12c13509c318ce9e71b5834aad48aeec9e07f197'),
-(3, 3, 'librarian', 'c4d3cc70ce03a82029018ae9f897fa910b05b71a'),
-(6, 3, 'm2', 'e97762dad95697c98c46c8acfadca0f6cf818092');
+(2, 1, 'admin', 'admin'),
+(3, 2, 'librarian', 'qwer1234'),
+(10, 2, 'ersan', 'qwer1234');
 
 -- --------------------------------------------------------
 
@@ -1384,9 +1383,8 @@ CREATE TABLE IF NOT EXISTS `kullanici_turu_bilgi` (
 --
 
 INSERT INTO `kullanici_turu_bilgi` (`KullaniciTuruNo`, `KullaniciTuruAdi`) VALUES
-(1, 'Master'),
-(2, 'Admin'),
-(3, 'Librarian');
+(1, 'Admin'),
+(2, 'Librarian');
 
 -- --------------------------------------------------------
 
@@ -1405,45 +1403,20 @@ CREATE TABLE IF NOT EXISTS `odunc` (
   PRIMARY KEY (`OduncNo`),
   KEY `fk_ogrenci_bilgi_has_kitap_bilgi_kitap_bilgi1_idx` (`KitapSeviyeNo`,`KitapNo`),
   KEY `fk_ogrenci_bilgi_has_kitap_bilgi_ogrenci_bilgi1_idx` (`OgrenciNo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=175 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Tablo döküm verisi `odunc`
 --
 
 INSERT INTO `odunc` (`OduncNo`, `OgrenciNo`, `KitapSeviyeNo`, `KitapNo`, `VerilisTarihi`, `PlanlananVerilisTarihi`, `TeslimEdilenTarihi`) VALUES
-(143, 140715037, 2, 174, '2015-02-16', '2015-02-23', '2015-02-17'),
-(144, 140911028, 1, 193, '2015-02-16', '2015-02-23', '2015-02-17'),
-(145, 140701020, 2, 28, '2015-02-16', '2015-02-23', '2015-02-17'),
-(146, 140709009, 4, 132, '2015-02-16', '2015-02-23', '2015-02-18'),
-(147, 140701004, 2, 45, '2015-02-16', '2015-02-23', '2015-02-23'),
-(148, 140701015, 2, 208, '2015-02-16', '2015-02-23', '2015-02-23'),
-(149, 141601019, 2, 105, '2015-02-16', '2015-02-23', '2015-02-24'),
-(150, 140713013, 2, 203, '2015-02-16', '2015-02-23', '2015-02-24'),
-(151, 140701010, 3, 36, '2015-02-16', '2015-02-23', '2015-03-03'),
-(152, 140709030, 5, 13, '2015-02-16', '2015-02-23', '2015-03-05'),
-(153, 140707003, 5, 22, '2015-02-16', '2015-02-23', '2015-03-05'),
-(154, 140711010, 1, 148, '2015-02-17', '2015-02-24', '2015-02-19'),
-(155, 140701036, 2, 203, '2015-02-17', '2015-02-24', '2015-02-26'),
-(156, 140701018, 2, 122, '2015-02-17', '2015-02-24', '2015-02-26'),
-(157, 140715006, 2, 194, '2015-02-17', '2015-02-24', '2015-03-06'),
-(158, 140709023, 4, 65, '2015-02-18', '2015-02-25', '2015-02-23'),
-(159, 140701014, 3, 61, '2015-02-18', '2015-02-25', '2015-02-24'),
-(160, 140711015, 4, 130, '2015-02-18', '2015-02-25', '2015-02-26'),
-(161, 140711021, 5, 51, '2015-02-18', '2015-02-25', '2015-03-05'),
-(162, 140711023, 1, 98, '2015-02-19', '2015-02-26', '2015-02-23'),
-(163, 140701025, 3, 180, '2015-02-19', '2015-02-26', '2015-03-04'),
-(164, 140715021, 3, 210, '2015-02-23', '2015-03-02', '2015-02-26'),
-(165, 140709012, 1, 203, '2015-02-23', '2015-03-02', '2015-02-27'),
-(166, 140715015, 1, 98, '2015-02-23', '2015-03-02', '2015-03-02'),
-(167, 140611033, 6, 14, '2015-02-23', '2015-03-02', '2015-03-02'),
-(168, 140707018, 1, 124, '2015-02-23', '2015-03-02', '2015-03-03'),
-(169, 140904019, 2, 208, '2015-02-24', '2015-03-03', '0000-00-00'),
-(170, 140707027, 2, 28, '2015-02-24', '2015-03-03', '0000-00-00'),
-(171, 140701022, 0, 55, '2015-02-25', '2015-03-04', '2015-02-26'),
-(172, 140611017, 5, 2, '2015-02-25', '2015-03-04', '2015-03-03'),
-(173, 140711017, 3, 223, '2015-03-02', '2015-03-09', '2015-03-06'),
-(174, 140715022, 4, 140, '2015-03-03', '2015-03-10', '2015-03-05');
+(1, 140701014, 0, 1, '2015-07-26', '2015-07-27', '2015-07-28'),
+(2, 140701014, 0, 2, '2015-08-03', '2015-08-04', '2015-08-03'),
+(3, 140701014, 0, 1, '2015-07-26', '2015-07-31', '2015-08-02'),
+(4, 140701022, 0, 3, '2015-08-17', '2015-08-19', '2015-08-25'),
+(5, 140709012, 0, 8, '2015-07-27', '2015-07-29', NULL),
+(6, 140701022, 0, 13, '2015-08-01', '2015-08-02', '2015-08-19'),
+(7, 140701022, 3, 25, '2015-08-05', '2015-08-07', '2015-08-04');
 
 -- --------------------------------------------------------
 
@@ -1574,7 +1547,7 @@ ALTER TABLE `kitap_bilgi`
 -- Tablo kısıtlamaları `kullanici_bilgi`
 --
 ALTER TABLE `kullanici_bilgi`
-  ADD CONSTRAINT `fk_kullanici_bilgi_kullanici_turu_bilgi1` FOREIGN KEY (`KullaniciTuruNo`) REFERENCES `kullanici_turu_bilgi` (`KullaniciTuruNo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `kullanici_bilgi_ibfk_1` FOREIGN KEY (`KullaniciTuruNo`) REFERENCES `kullanici_turu_bilgi` (`KullaniciTuruNo`);
 
 --
 -- Tablo kısıtlamaları `odunc`
