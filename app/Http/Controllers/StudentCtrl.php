@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class StudentCtrl extends Controller
 {
@@ -20,6 +21,7 @@ class StudentCtrl extends Controller
     }
     
     function studentAdd(){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $departments = DB::table('bolum_bilgi')
                 ->get();
         
@@ -28,6 +30,7 @@ class StudentCtrl extends Controller
     }
     
     function postStudentAdd(Request $r){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $studentNumber = $r->input("ogrenciNo");
         $studentName = $r->input("ogrenciAdi");
         $studentSurname = $r->input("ogrenciSoyadi");
@@ -50,6 +53,7 @@ class StudentCtrl extends Controller
     }
     
     function studentEdit($id){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $theStudent = DB::table('ogrenci_bilgi')
                 ->where('OgrenciNo', $id)
                 ->get();
@@ -59,6 +63,7 @@ class StudentCtrl extends Controller
     }
     
     function postStudentEdit(Request $r){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $studentNumber = $r->input("ogrenciNo");
         $studentName = $r->input("ogrenciAdi");
         $studentSurname = $r->input("ogrenciSoyadi");
@@ -81,11 +86,11 @@ class StudentCtrl extends Controller
     }
     
     function studentRemove($id){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         DB::table("ogrenci_bilgi")
             ->where("OgrenciNo", $id)
             ->delete();
         return redirect("/management/student");
-        //return "Student Remove $id";
     }
 
 }

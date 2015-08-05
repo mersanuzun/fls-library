@@ -9,7 +9,7 @@
     <form action="" method="post">
         {!! csrf_field() !!}
         <fieldset>
-            <legend> Add Student </legend>
+            <legend> Edit Student </legend>
             <div class="error" style="text-align:center;">
                 @if (session("message"))
                 {{session("message")}}
