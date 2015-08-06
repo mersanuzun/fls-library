@@ -17,7 +17,6 @@ class StudentCtrl extends Controller
                 ->get();
        
         return view('student.index', ['students' => $students]);
-        //return "Student List";
     }
     
     function studentAdd(){
@@ -26,7 +25,6 @@ class StudentCtrl extends Controller
                 ->get();
         
         return view('student.add', ['departments' => $departments]);
-        //return "Student Add";
     }
     
     function postStudentAdd(Request $r){
