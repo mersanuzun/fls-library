@@ -12,10 +12,15 @@
 */
 
 // General Pages
-Route::get("/", function(){
-    return view("main");
+Route::get("/", "MainCtrl@main.index");
+
+Route::get("/faq", function(){
+    return view("main.faq");
 });
 
+Route::get("/info", function(){
+    return view("main.info");
+});
 
 // Librarian Page
 Route::get("/management/librarian", "LibrarianCtrl@index");
