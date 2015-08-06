@@ -43,6 +43,10 @@ class LibrarianCtrl extends Controller{
         $studentNo = $r->input("studentNo");
         $startDate = $r->input("startDate");
         $estimatedFinishDate = $r->input("estimatedFinishDate");
+        if (!is_numeric($bookNo) || !is_numeric($bookLevel) || !is_numeric($studentNo)){
+            session(["message" => "Hata"]);
+            return;
+        }
         $bookStatus = DB::table("kitap_bilgi")
                         ->where("KitapNo", DB::raw($bookNo . 
                                 " and KitapSeviyeNo = " . $bookLevel))->get();
@@ -74,6 +78,10 @@ class LibrarianCtrl extends Controller{
         $bookLevel = $r->input("deliveredBookLevel");
         $studentNo = $r->input("deliveredStudentNo");
         $finishDate = $r->input("finishDate");
+        if (!is_numeric($bookNo) || !is_numeric($bookLevel) || !is_numeric($studentNo)){
+            session(["message" => "Hata"]);
+            return;
+        }
         $studentStatus = DB::table("ogrenci_bilgi")
                         ->where("OgrenciNo", "=", $studentNo)->get();
         $bookStatus = DB::table("kitap_bilgi")

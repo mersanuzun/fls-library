@@ -6,56 +6,157 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class BookCtrl extends Controller
 {
     function bookList(){
-        return "Book List";
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $books = DB::table('kitap_bilgi')
+                ->join('kitap_seviye_bilgi', 'kitap_bilgi.KitapSeviyeNo', '=', 'kitap_seviye_bilgi.SeviyeNo')
+                ->get();
+       
+        return view('book.index', ['books' => $books]);
     }
     
     function bookAdd(){
-        return "Book Add";
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $bookLevels = DB::table('kitap_seviye_bilgi')
+                ->get();
+        
+        return view('book.add', ['bookLevels' => $bookLevels]);
     }
     
-    function postBookAdd(){
-        
+    function postBookAdd(Request $r){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $bookNo = $r->input("kitapNo");
+        $bookName = $r->input("kitapAdi");
+        $authorName = $r->input("yazarAdi");
+        $publisher = $r->input("yayinEvi");
+        $bookLevel = mb_substr(trim($r->input("kitapSeviyesi")), -2, 1);
+        $resultID = DB::table("kitap_bilgi")
+            ->insert([
+            "KitapSeviyeNo" => $bookLevel, 
+            "KitapNo" => $bookNo,
+            "KitapAdi" => $bookName,
+            "YazarAdi" => $authorName,
+            "YayinEvi" => $publisher,
+            "VarMi" => 1
+        ]);
+        if ($resultID){
+            return redirect("/management/book");
+        }else {
+            session()->flash("message", "Book is not created.");
+            return back();
+        }
     }
     
     function bookEdit($levelId, $id){
-        return "Book Edit $levelId - $id";
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $theBook = DB::table('kitap_bilgi')
+                ->where('KitapSeviyeNo', $levelId)
+                ->where('KitapNo', $id)
+                ->get();
+        $bookLevels = DB::table('kitap_seviye_bilgi')
+                ->get();
+        return view('book.edit', ['book' => $theBook, 'bookLevels' => $bookLevels]);
     }
     
-    function postBookEdit(){
-        
+    function postBookEdit(Request $r){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $bookNo = $r->input("kitapNo");
+        $bookName = $r->input("kitapAdi");
+        $authorName = $r->input("yazarAdi");
+        $publisher = $r->input("yayinEvi");
+        $bookLevel = mb_substr(trim($r->input("kitapSeviyesi")), -2, 1);
+        $resultID = DB::table("kitap_bilgi")
+            ->where('KitapSeviyeNo', $bookLevel)
+            ->where('KitapNo', $bookNo)
+            ->update([
+            "KitapAdi" => $bookName,
+            "YazarAdi" => $authorName,
+            "YayinEvi" => $publisher
+        ]);
+        if ($resultID){
+            return redirect("/management/book");
+        }else {
+            session()->flash("message", "Book is not edited.");
+            return back();
+        }
     }
     
     function bookRemove($levelId, $id){
-        return "Book Remove $levelId - $id";
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        DB::table("kitap_bilgi")
+            ->where('KitapSeviyeNo', $levelId)
+            ->where('KitapNo', $id)
+            ->delete();
+        return redirect("/management/book");
     }
     
     // Book Level Management
     function bookLevelList(){
-        return "Book Level List";
+         if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $bookLevels = DB::table('kitap_seviye_bilgi')
+                ->get();
+       
+        return view('book.level.index', ['bookLevels' => $bookLevels]);
     }
     
     function bookLevelAdd(){
-        return "Book Level Add";
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        
+        return view('book.level.add');
     }
     
-    function postBookLevelAdd(){
-        
+    function postBookLevelAdd(Request $r){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $bookLevelNo = $r->input("kitapSeviyeNo");
+        $bookLevelName = $r->input("kitapSeviyeAdi");
+        $resultID = DB::table("kitap_seviye_bilgi")
+            ->insert([
+            "SeviyeNo" => $bookLevelNo, 
+            "SeviyeAdi" => $bookLevelName
+        ]);
+        if ($resultID){
+            return redirect("/management/booklevel");
+        }else {
+            session()->flash("message", "Book Level is not created.");
+            return back();
+        }
     }
     
     function bookLevelEdit($id){
-        return "Book Level Edit $id";
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $theBookLevel = DB::table('kitap_seviye_bilgi')
+                ->where('SeviyeNo', $id)
+                ->get();
+        return view('book.level.edit', ['bookLevel' => $theBookLevel]);
     }
     
-    function postBookLevelEdit(){
-        
+    function postBookLevelEdit(Request $r){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $bookLevelNo = $r->input("kitapSeviyeNo");
+        $bookLevelName = $r->input("kitapSeviyeAdi");
+        $resultID = DB::table("kitap_seviye_bilgi")
+            ->where('SeviyeNo', $bookLevelNo)
+            ->update([
+            "SeviyeAdi" => $bookLevelName
+        ]);
+        if ($resultID){
+            return redirect("/management/booklevel");
+        }else {
+            session()->flash("message", "Book Level is not edited.");
+            return back();
+        }
     }
     
     function bookLevelRemove($id){
-        return "Book Level Remove $id";
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        DB::table("kitap_seviye_bilgi")
+            ->where('SeviyeNo', $id)
+            ->delete();
+        return redirect("/management/booklevel");
     }
     
 }

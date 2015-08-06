@@ -11,7 +11,7 @@ Route::get("management/librarian/deneme", "LibrarianCtrl@denemeDB");
 Route::get("/auth/login", "LoginCtrl@getLogin");
 Route::post("/auth/login", "LoginCtrl@postLogin");
 Route::get("/auth/logout", "LoginCtrl@getLogout");
- 
+
 // Admin Page
 Route::get("/management/admin", "AdminCtrl@index");
 Route::get("/management/admin/reports", "AdminCtrl@reports");

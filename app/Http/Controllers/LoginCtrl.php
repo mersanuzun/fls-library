@@ -8,9 +8,19 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class LoginCtrl extends Controller{
+    
+    public function passCrypt($pass){
+        $passOrder = array("md5", "sha1", "md5", "sha1");
+        foreach ($passOrder as $alg) {
+            $pass = $alg($pass);
+        }
+        return $pass;
+    }
+    
     public function getLogin(){
         return $this->check();
     }
+    
     public function postLogin(Request $r){
         $username = $r->input("username");
         $password = $r->input("password");
@@ -28,6 +38,7 @@ class LoginCtrl extends Controller{
         }
         return $this->check();
     }
+    
     private function check(){
         if (session("auth") == 1){
             return redirect("/management/admin");
@@ -36,6 +47,7 @@ class LoginCtrl extends Controller{
         }
         return view("/auth/login");
     }
+    
     public static function isEnter(){
         if (session()->has("auth")){
             if (session("auth") == 1){
@@ -47,6 +59,7 @@ class LoginCtrl extends Controller{
             return false;
         }
     }
+    
     public function getLogout(){
         session()->forget('auth');
         session()->forget("username");
