@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,22 +9,58 @@ use App\Http\Controllers\Controller;
 
 class MainPageCtrl extends Controller{
     public function index(){
-        return view("mainpage.index");
+        return view("main.index");
     }
-    public function search(){
-        return view("mainpage.search");
-    }
-    public function postSearch(Request $r){
+    public function postSearchController(Request $r){
         if ($r->input("araButonuKitap")){
-            $this->searchBook($r);
+            return $this->searchBook($r);
         }else if ($r->input("araButonuSeviye")){
-            $this->seachLevel($r);
-        }else if($r->input(""))
+            return $this->searchLevel($r);
+        }else if($r->input("araButonuYazar")){
+            return $this->searchAuther($r);
+        }
     }
-    public function searchBook(){ // search bölümünden available checkbox ı kaldır
+    public function searchBook($r){
         $bookName = $r->input("aranacakKitap");
-        $books = DB::table("kitap_bilgi")
-            ->where("KitapAdi", "=", $bookName)->get();
-        return view("main.seach", ["books" => $books]);
+        if ($r->input("onlyAvailable")){
+            $books = DB::table("kitap_bilgi")
+                ->where("KitapAdi", "LIKE", "%" . $bookName ."%")
+                ->where("VarMi", "=", "1")
+                ->get();
+            //dd($books);
+        }else{
+            $books = DB::table("kitap_bilgi")
+                ->join("odunc", "odunc.KitapNo", "=", 
+                           DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
+                ->where("KitapAdi", "LIKE", "%" . $bookName ."%")
+                ->get();
+        }
+        return view("main.search")->with("books", $books);
+    }
+    public function searchLevel($r){
+        if ($r->input("onlyAvailable")){
+            $books = DB::table("kitap_bilgi")
+            ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
+            ->where("KitapSeviyeNo", "=", $r->input("seviyeSec"))
+            ->where("VarMi", "=", "1")->get();
+        }else{
+            $books = DB::table("kitap_bilgi")
+            ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
+            ->where("KitapSeviyeNo", "=", $r->input("seviyeSec"))->get();
+        }
+        return view("main.search")->with("books", $books);
+    }
+    public function searchAuther($r){
+        if ($r->input("onlyAvailable")){
+            $books = DB::table("kitap_bilgi")
+                ->where("YazarAdi", "LIKE", "%" . $r->input("aranacakYazar") ."%")
+                ->where("VarMi", "=", "1")
+                ->get();
+        }else{
+            $books = DB::table("kitap_bilgi")
+                ->where("YazarAdi", "LIKE", "%" . $r->input("aranacakYazar") ."%")
+                ->get();
+        }
+        return view("main.search")->with("books", $books);
     }
 }

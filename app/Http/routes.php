@@ -1,30 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-=======
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-// General Pages
-Route::get("/", "MainCtrl@main.index");
-
-Route::get("/faq", function(){
-    return view("main.faq");
-});
-
-Route::get("/info", function(){
-    return view("main.info");
-});
-
->>>>>>> 4e686f95aa7d1788b16eb382c364911623754965
 // Librarian Page
 Route::get("/management/librarian", "LibrarianCtrl@index");
 Route::get("/management/librarian/circulation", "LibrarianCtrl@circulation");
@@ -81,4 +56,4 @@ Route::get("/management/booklevel/remove/{id}", "BookCtrl@bookLevelRemove");
 
 //Mainpage
 Route::get("/", "MainPageCtrl@index");
-Route::get("/search", "MainPageCtrl@search");
+Route::post("/search", "MainPageCtrl@postSearchController");

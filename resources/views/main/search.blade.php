@@ -2,5 +2,5 @@
 
 @section("title", "Main")
 @section("content")
-Bu sayfa mahmutu bekliyor
+{{$books[0]->PlanlananVerilisTarihi}}
 @endsection
