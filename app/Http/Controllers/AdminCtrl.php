@@ -37,25 +37,35 @@ class AdminCtrl extends Controller{
     
     public function userManagementAdd(){
         if (!LoginCtrl::isEnter()) return redirect("/auth/login");
-        return view("admin.user-manage-add");
+        $users = DB::table("kullanici_turu_bilgi")->get();
+        return view("admin.user-manage-add")->with("users", $users);
     }
     public function postUserManagementAdd(Request $r){
         if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $username = $r->input("kullaniciAdi");
         $password = $r->input("sifre");
         $userType = $r->input("kullaniciSecim");
-        $resultID = DB::table("kullanici_bilgi")
+        $result = DB::table("kullanici_bilgi")
+            ->where("KullaniciAdi", "=", $username)
+            ->get();
+        if ($result) {
+            session()->flash("message", "Username is used.");
+            return back();
+        }else{
+            $resultID = DB::table("kullanici_bilgi")
             ->insertGetId([
             "KullaniciTuruNo" => $userType, 
             "KullaniciAdi" => $username,
             "KullaniciSifre" => $password
-        ]);
-        if ($resultID){
-            return redirect("/management/admin/user-management");
-        }else {
-            session()->flash("message", "User is not created.");
-            return back();
+            ]);
+            if ($resultID){
+                return redirect("/management/admin/user-management");
+            }else {
+                session()->flash("message", "User is not created.");
+                return back();
+            }
         }
+        
     }
     public function postUserManagementEdit(Request $r, $kullaniciNo){
         $newPassword = $r->input("yeniSifre");

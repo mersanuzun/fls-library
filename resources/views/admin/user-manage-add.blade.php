@@ -38,7 +38,11 @@
                     </td>
                     <td>
                         <select id="kullaniciSecim" name="kullaniciSecim" required="" class="form-control">
-                            <option selected="" value="2"> Librarian </option>
+                           @foreach($users as $user)
+                               <option selected="" value="{{$user->KullaniciTuruNo}}">
+                                   {{$user->KullaniciTuruAdi}}
+                               </option>
+                           @endforeach
                         </select>
                     </td>
                 </tr>
