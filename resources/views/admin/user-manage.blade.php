@@ -19,13 +19,7 @@
         @foreach($users as $user)
         <tr>
             <td>{{$user->KullaniciAdi}}</td>
-            @if($user->KullaniciTuruNo == 2)
-                <td>Admin</td>
-            @elseif($user->KullaniciTuruNo == 3)
-                <td> Librarian</td>
-            @else
-                <td>...</td>
-            @endif
+            <td>{{$user->KullaniciTuruAdi}}</td>
             <td>
                 <a href="user-management/edit/{{$user->KullaniciNo}}">
                     <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-edit"></span> Edit </button>

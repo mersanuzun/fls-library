@@ -29,7 +29,7 @@ class AdminCtrl extends Controller{
     public function userManagement(){
         if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $users = DB::table('kullanici_bilgi')
-                ->where('KullaniciTuruNo', '!=', '1')
+                ->join("kullanici_turu_bilgi", "kullanici_turu_bilgi.KullaniciTuruNo", "=", "kullanici_bilgi.KullaniciTuruNo")
                 ->get();
         
         return view("admin.user-manage", ['users' => $users]);

@@ -29,6 +29,7 @@ class LibrarianCtrl extends Controller{
         return view("librarian.circulation");
     }
     public function circulationControl(Request $r){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         if ($r->input("startCirculation")){
             $this->startCirculation($r);
         }elseif ($r->input("finishCirculation")){
