@@ -40,6 +40,7 @@ class AdminCtrl extends Controller{
         return view("admin.user-manage-add");
     }
     public function postUserManagementAdd(Request $r){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $username = $r->input("kullaniciAdi");
         $password = $r->input("sifre");
         $userType = $r->input("kullaniciSecim");
@@ -69,6 +70,7 @@ class AdminCtrl extends Controller{
         return redirect("/management/admin/user-management");
     }
     public function userManagementEdit($id){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $user = DB::table('kullanici_bilgi')
                 ->where('KullaniciNo', "=", $id)
                 ->first();
@@ -76,6 +78,7 @@ class AdminCtrl extends Controller{
     }
     
     public function userManagementRemove($id){
+        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         DB::table("kullanici_bilgi")
             ->where("KullaniciNo", "=", $id)
             ->delete();
