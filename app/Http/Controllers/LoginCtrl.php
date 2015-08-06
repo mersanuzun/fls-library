@@ -50,6 +50,6 @@ class LoginCtrl extends Controller{
     public function getLogout(){
         session()->forget('auth');
         session()->forget("username");
-        return redirect("/auth/login");
+        return redirect("/");
     }
 }

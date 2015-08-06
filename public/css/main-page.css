@@ -1,0 +1,81 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,latin-ext);
+body{
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: auto;
+    text-align: center;
+    background-color: whitesmoke;
+}
+table th{
+    background-color: #13a1df;
+    color: #fff;
+    padding: 5px;
+    font-size: 1em;
+    text-align: center;
+}
+table td{
+    font-size: 16px;
+}
+.form-control:focus{
+    border: 2px #13a1df;
+    border-style: solid;
+}
+#dynamic-content{
+    width: 1000px;
+    margin: auto;
+}
+a:hover{
+    text-decoration: none;
+}
+.pager{
+    font-weight: bold;
+}
+#neredeAranacak, #icinAra, #seviyeSec, #seviyeSecLabel{
+    float: left;
+}
+#icinAra, #aranacakKitapLabel, #seviyeSecLabel, #aranacakKelimeLabel, #aranacakYazarLabel, #aranacakYayinEviLabel{
+    background-color: #fff;
+    border: none;
+    box-shadow: none;
+    font-size: 16px;
+    font-weight: normal;
+}
+#araButonu{
+    //margin-top: 160px;
+}
+/*     INVERSE TEMASI Ä°Ã‡Ä°N DEÄÄ°ÅÄ°KLÄ°KLER   */
+.navbar-mmm {
+    
+}
+.navbar-mmm .navbar-brand {
+    color: #fff;
+}
+.navbar-mmm .navbar-brand:hover,
+.navbar-mmm .navbar-brand:focus {
+    color: #fff; /*logonun Ã¼zerine gelince olan renk*/
+    background-color: #0086e5;
+}
+.navbar-mmm .navbar-text {
+    color: #fff;
+}
+.navbar-mmm .navbar-nav > li > a {
+    color: #fff;/*inaktif menÃ¼lerin rengi*/
+}
+.navbar-mmm .navbar-nav > li > a:hover,
+.navbar-mmm .navbar-nav > li > a:focus {
+    color: #fff;
+    background-color: #0086e5;
+}
+.navbar-mmm .navbar-nav > .active > a,
+.navbar-mmm .navbar-nav > .active > a:hover,
+.navbar-mmm .navbar-nav > .active > a:focus {
+    color: #fff;/*yazÄ± deÄŸiÅŸiyor*/
+    background-color: #0086e5;/*080808*//*0086e5*/
+}
+/*kendim ekledim baÅŸ*/
+.navbar-mmm .navbar-nav > .mid-active > a,
+.navbar-mmm .navbar-nav > .mid-active > a:hover,
+.navbar-mmm .navbar-nav > .mid-active > a:focus {
+    color: #fff;/*yazÄ± deÄŸiÅŸiyor*/
+    background-color: #228cfd;/*080808*//*0086e5*/
+}
+/*kendim ekledim - son*/

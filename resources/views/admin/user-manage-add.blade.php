@@ -38,7 +38,7 @@
                     </td>
                     <td>
                         <select id="kullaniciSecim" name="kullaniciSecim" required="" class="form-control">
-                            <option selected="" value="3"> Librarian </option>
+                            <option selected="" value="2"> Librarian </option>
                         </select>
                     </td>
                 </tr>
