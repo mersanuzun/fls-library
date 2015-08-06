@@ -31,11 +31,9 @@
                    {!! csrf_field() !!}
                     <label for="seviyeSec" id="seviyeSecLabel" class="form-control"> Choose Level </label>
                     <select name="seviyeSec" id="seviyeSec" class="form-control">
-                        <option value='1'>Starter (1)</option>
-                        <option value='2'>Beginner (2)</option>
-                        <option value='3'>Pre-Intermediate (3)</option>
-                        <option value='4'>Intermediate (4)</option>
-                        <option value='5'>Advance (5)</option>                        
+                        @foreach ($bookLevels as $level)
+                            <option value='{{$level->SeviyeNo}}'>{{$level->SeviyeAdi}} ({{$level->SeviyeNo}})</option>
+                        @endforeach
                     </select>
                     <input type="checkbox" name="onlyAvailable" id="onlyAvailable" class=""/> <strong>Show Only Available Books</strong>   
                     <input type="submit" id="araButonuSeviye" name="araButonuSeviye" value="Search" onclick="TextBoxKontrol()" class="btn btn-mmm btn-block"/>

@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 
 class MainPageCtrl extends Controller{
     public function index(){
-        return view("main.index");
+        $bookLevels = DB::table('kitap_seviye_bilgi')
+                ->get();
+        return view("main.index", ['bookLevels' => $bookLevels]);
     }
     public function postSearchController(Request $r){
         if ($r->input("araButonuKitap")){
@@ -24,6 +26,7 @@ class MainPageCtrl extends Controller{
         $bookName = $r->input("aranacakKitap");
         if ($r->input("onlyAvailable")){
             $books = DB::table("kitap_bilgi")
+                ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
                 ->where("KitapAdi", "LIKE", "%" . $bookName ."%")
                 ->where("VarMi", "=", "1")
                 ->get();
@@ -32,6 +35,7 @@ class MainPageCtrl extends Controller{
             $books = DB::table("kitap_bilgi")
                 ->join("odunc", "odunc.KitapNo", "=", 
                            DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
+                ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
                 ->where("KitapAdi", "LIKE", "%" . $bookName ."%")
                 ->get();
         }
@@ -45,7 +49,10 @@ class MainPageCtrl extends Controller{
             ->where("VarMi", "=", "1")->get();
         }else{
             $books = DB::table("kitap_bilgi")
-            ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
+            
+            
+                ->join("odunc", "odunc.KitapNo", "=", 
+                           DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
             ->where("KitapSeviyeNo", "=", $r->input("seviyeSec"))->get();
         }
         return view("main.search")->with("books", $books);
@@ -53,11 +60,13 @@ class MainPageCtrl extends Controller{
     public function searchAuther($r){
         if ($r->input("onlyAvailable")){
             $books = DB::table("kitap_bilgi")
+                ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
                 ->where("YazarAdi", "LIKE", "%" . $r->input("aranacakYazar") ."%")
                 ->where("VarMi", "=", "1")
                 ->get();
         }else{
             $books = DB::table("kitap_bilgi")
+                ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
                 ->where("YazarAdi", "LIKE", "%" . $r->input("aranacakYazar") ."%")
                 ->get();
         }

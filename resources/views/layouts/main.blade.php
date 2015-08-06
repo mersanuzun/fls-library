@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MSKU FLS - @yield('title')</title>
+        <title>MSKU School of Foreign Languages - @yield('title')</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="{{ URL::asset('/img/favicon.ico') }}">
@@ -39,7 +39,7 @@
                     </ul>
                     <ul class='nav navbar-nav navbar-right'>
                         <li>
-                            <a href="/auth/login"> @if (session("username")) {{session("username")}} @else Login @endif <span class="glyphicon glyphicon-log-in"></span></a>  
+                            <a href="/auth/login"> @if (session("username")) <span class="glyphicon glyphicon-user"></span> {{session("username")}} @else Login <span class="glyphicon glyphicon-log-in"></span> @endif </a>  
                         </li>
                     </ul>     
                 </div>
