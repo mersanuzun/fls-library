@@ -71,7 +71,7 @@ class LibrarianCtrl extends Controller{
         }else {
             $message = "There is no such that student.";
         }
-        session(["message" => $message]);
+        session()->flash("message", $message);
     }
     public function finishCirculation($r){
         $bookNo = $r->input("deliveredBookNo");

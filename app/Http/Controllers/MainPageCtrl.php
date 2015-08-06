@@ -33,9 +33,9 @@ class MainPageCtrl extends Controller{
             //dd($books);
         }else{
             $books = DB::table("kitap_bilgi")
-                ->join("odunc", "odunc.KitapNo", "=", 
-                           DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
                 ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
+                ->leftJoin("odunc", "odunc.KitapNo", "=", 
+                           DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
                 ->where("KitapAdi", "LIKE", "%" . $bookName ."%")
                 ->get();
         }
@@ -49,11 +49,10 @@ class MainPageCtrl extends Controller{
             ->where("VarMi", "=", "1")->get();
         }else{
             $books = DB::table("kitap_bilgi")
-            
-            
-                ->join("odunc", "odunc.KitapNo", "=", 
+                ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
+                ->leftJoin("odunc", "odunc.KitapNo", "=", 
                            DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
-            ->where("KitapSeviyeNo", "=", $r->input("seviyeSec"))->get();
+            ->where("kitap_bilgi.KitapSeviyeNo", "=", $r->input("seviyeSec"))->get();
         }
         return view("main.search")->with("books", $books);
     }
@@ -67,6 +66,8 @@ class MainPageCtrl extends Controller{
         }else{
             $books = DB::table("kitap_bilgi")
                 ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
+                ->leftJoin("odunc", "odunc.KitapNo", "=", 
+                           DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
                 ->where("YazarAdi", "LIKE", "%" . $r->input("aranacakYazar") ."%")
                 ->get();
         }

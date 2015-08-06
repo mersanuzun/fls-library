@@ -12,9 +12,7 @@
         <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap.vertical-tabs.min.css') }}">
     </head>
     <body>
-        <div id="fls_header_bg" style="background-image: url({{ URL::asset('/img/page-header.JPG') }});">
-
-        </div>
+        <div id="fls_header_bg" style="background-image: url({{ URL::asset('/img/page-header.JPG') }});"></div>
         <div id="top_menu">
 
         </div>
