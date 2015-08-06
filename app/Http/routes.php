@@ -1,7 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-=======
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,7 +12,7 @@
 */
 
 // General Pages
-Route::get("/", "MainCtrl@main.index");
+Route::get("/", "MainPageCtrl@main.index");
 
 Route::get("/faq", function(){
     return view("main.faq");
@@ -24,7 +22,6 @@ Route::get("/info", function(){
     return view("main.info");
 });
 
->>>>>>> 4e686f95aa7d1788b16eb382c364911623754965
 // Librarian Page
 Route::get("/management/librarian", "LibrarianCtrl@index");
 Route::get("/management/librarian/circulation", "LibrarianCtrl@circulation");
