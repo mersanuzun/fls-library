@@ -14,7 +14,17 @@ class AdminCtrl extends Controller{
     // Admin Index Page
     public function index(){
         if (!LoginCtrl::isEnter()) return redirect("/auth/login");
-        return view("admin.index");
+        $studentNumber = count(DB::table('ogrenci_bilgi')
+                ->join('bolum_bilgi', 'bolum_bilgi.BolumKodu', '=', 'ogrenci_bilgi.OgrenciBolumKodu')
+                ->get());
+        $bookNumber = count(DB::table('kitap_bilgi')
+                ->join('kitap_seviye_bilgi', 'kitap_bilgi.KitapSeviyeNo', '=', 'kitap_seviye_bilgi.SeviyeNo')
+                ->get());
+        $users = DB::table('kullanici_bilgi')
+                ->join("kullanici_turu_bilgi", "kullanici_turu_bilgi.KullaniciTuruNo", "=", "kullanici_bilgi.KullaniciTuruNo")
+                ->get();
+        //echo $studentNumber . "  " . $bookNumber;
+        return view("admin.index", ['studentNumber' => $studentNumber, 'bookNumber'=> $bookNumber, 'users' => $users]);
         
     }
 

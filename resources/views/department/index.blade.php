@@ -13,7 +13,7 @@
             <a href="department/add">
                 <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add Department </button>
             </a>
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered table-hover">
                 <tr>
                     <th>Department Number</th>
                     <th>Department Name</th>

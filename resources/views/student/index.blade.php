@@ -13,7 +13,7 @@
             <a href="student/add">
                 <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add Student </button>
             </a>
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered table-hover">
                 <tr>
                     <th>Number</th>
                     <th>Name</th>

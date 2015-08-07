@@ -11,7 +11,7 @@
         <a href="book/add">
             <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add Book </button>
         </a>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover">
             <tr>
                 <th>#</th>
                 <th>Book Name</th>

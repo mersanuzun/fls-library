@@ -11,7 +11,7 @@
         <a href="booklevel/add">
             <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add Book </button>
         </a>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover">
             <tr>
                 <th>Book Level No</th>
                 <th>Book Level Name</th>
