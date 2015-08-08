@@ -9,10 +9,7 @@
 <span>There is no undelivered book.</span>
 @else
 <div class="table-responsive">
-    <h3> Department List <span class="label label-danger">{{count($undelivered)}}</span></h3>
-    <a href="department/add">
-        <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add Department </button>
-    </a>
+    <h3> Undelivered Book List <span class="label label-danger">{{count($undelivered)}}</span></h3>
     <table class="table table-striped table-bordered table-hover">
         <tr>
             <th>Student Number</th>

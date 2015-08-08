@@ -7,7 +7,7 @@
     <span>There is no registered book level.</span>
 @else
     <div class="table-responsive">
-        <h3> Book Level List <span class="label label-danger">{{count($bookLevels)}}<span></h3>
+        <h3> Book Level List <span class="label label-danger">{{$bookLevelsNumber}}<span></h3>
         <a href="booklevel/add">
             <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add Book </button>
         </a>
@@ -32,7 +32,7 @@
             </tr>
             @endforeach
         </table>
-        <h1>sayfalama</h1>
+        {!! $bookLevels->render() !!}
     </div><!-- .table-responsive sonu -->
 @endif
 @endsection

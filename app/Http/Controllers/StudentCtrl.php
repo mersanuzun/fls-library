@@ -12,11 +12,14 @@ class StudentCtrl extends Controller
 {
     function studentList(){
         if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        $studentsNumber = count(DB::table('ogrenci_bilgi')
+                ->join('bolum_bilgi', 'bolum_bilgi.BolumKodu', '=', 'ogrenci_bilgi.OgrenciBolumKodu')
+                ->get());
         $students = DB::table('ogrenci_bilgi')
                 ->join('bolum_bilgi', 'bolum_bilgi.BolumKodu', '=', 'ogrenci_bilgi.OgrenciBolumKodu')
-                ->get();
+                ->paginate(10);
        
-        return view('student.index', ['students' => $students]);
+        return view('student.index', ['students' => $students, 'studentsNumber' => $studentsNumber]);
     }
     
     function studentAdd(){
