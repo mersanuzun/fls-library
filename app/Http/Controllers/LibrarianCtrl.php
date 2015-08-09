@@ -9,7 +9,7 @@ use App\Http\Controllers\LoginCtrl;
 class LibrarianCtrl extends Controller{
     public $err = null;
     public function index(){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $undelivered = [];
         $today = date("Y-m-d");
         $delivered = DB::table("odunc")
@@ -25,11 +25,11 @@ class LibrarianCtrl extends Controller{
         return view("librarian.index", ["undelivered" => $undelivered]);
     }
     public function circulation(){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         return view("librarian.circulation");
     }
     public function circulationControl(Request $r){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         if ($r->input("startCirculation")){
             $this->startCirculation($r);
         }elseif ($r->input("finishCirculation")){

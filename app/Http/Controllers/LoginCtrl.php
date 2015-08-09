@@ -48,12 +48,12 @@ class LoginCtrl extends Controller{
         return view("/auth/login");
     }
     
-    public static function isEnter(){
+    public static function isEnter($id){
         if (session()->has("auth")){
-            if (session("auth") == 1){
+            if (session("auth") == $id){
                 return true;
-            }else if (session("auth") == 2) {
-                return true;
+            }else {
+                return false;
             }
         }else {
             return false;

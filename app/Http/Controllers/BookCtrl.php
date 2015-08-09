@@ -11,7 +11,7 @@ use DB;
 class BookCtrl extends Controller
 {
     function bookList(){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $books = DB::table('kitap_bilgi')
                 ->join('kitap_seviye_bilgi', 'kitap_bilgi.KitapSeviyeNo', '=', 'kitap_seviye_bilgi.SeviyeNo')
                 ->get();
@@ -20,7 +20,7 @@ class BookCtrl extends Controller
     }
     
     function bookAdd(){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $bookLevels = DB::table('kitap_seviye_bilgi')
                 ->get();
         
@@ -28,7 +28,7 @@ class BookCtrl extends Controller
     }
     
     function postBookAdd(Request $r){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $bookNo = $r->input("kitapNo");
         $bookName = $r->input("kitapAdi");
         $authorName = $r->input("yazarAdi");
@@ -52,7 +52,7 @@ class BookCtrl extends Controller
     }
     
     function bookEdit($levelId, $id){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $theBook = DB::table('kitap_bilgi')
                 ->where('KitapSeviyeNo', $levelId)
                 ->where('KitapNo', $id)
@@ -63,7 +63,7 @@ class BookCtrl extends Controller
     }
     
     function postBookEdit(Request $r){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $bookNo = $r->input("kitapNo");
         $bookName = $r->input("kitapAdi");
         $authorName = $r->input("yazarAdi");
@@ -86,7 +86,7 @@ class BookCtrl extends Controller
     }
     
     function bookRemove($levelId, $id){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         DB::table("kitap_bilgi")
             ->where('KitapSeviyeNo', $levelId)
             ->where('KitapNo', $id)
@@ -96,7 +96,7 @@ class BookCtrl extends Controller
     
     // Book Level Management
     function bookLevelList(){
-         if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+         if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $bookLevels = DB::table('kitap_seviye_bilgi')
                 ->get();
        
@@ -104,13 +104,13 @@ class BookCtrl extends Controller
     }
     
     function bookLevelAdd(){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         
         return view('book.level.add');
     }
     
     function postBookLevelAdd(Request $r){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $bookLevelNo = $r->input("kitapSeviyeNo");
         $bookLevelName = $r->input("kitapSeviyeAdi");
         $resultID = DB::table("kitap_seviye_bilgi")
@@ -127,7 +127,7 @@ class BookCtrl extends Controller
     }
     
     function bookLevelEdit($id){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $theBookLevel = DB::table('kitap_seviye_bilgi')
                 ->where('SeviyeNo', $id)
                 ->get();
@@ -135,7 +135,7 @@ class BookCtrl extends Controller
     }
     
     function postBookLevelEdit(Request $r){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $bookLevelNo = $r->input("kitapSeviyeNo");
         $bookLevelName = $r->input("kitapSeviyeAdi");
         $resultID = DB::table("kitap_seviye_bilgi")
@@ -152,7 +152,7 @@ class BookCtrl extends Controller
     }
     
     function bookLevelRemove($id){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         DB::table("kitap_seviye_bilgi")
             ->where('SeviyeNo', $id)
             ->delete();

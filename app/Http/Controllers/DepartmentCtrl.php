@@ -11,7 +11,7 @@ use DB;
 class DepartmentCtrl extends Controller
 {
     function departmentList(){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $departments = DB::table('bolum_bilgi')
                 ->get();
        
@@ -19,13 +19,12 @@ class DepartmentCtrl extends Controller
     }
     
     function departmentAdd(){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
-        
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         return view('department.add');
     }
     
     function postDepartmentAdd(Request $r){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $depCode = $r->input("bolumKodu");
         $depName = $r->input("bolumAdi");
         $resultID = DB::table("bolum_bilgi")
@@ -42,7 +41,7 @@ class DepartmentCtrl extends Controller
     }
     
     function departmentEdit($id){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $theDepartment = DB::table('bolum_bilgi')
                 ->where('BolumKodu', $id)
                 ->get();
@@ -50,7 +49,7 @@ class DepartmentCtrl extends Controller
     }
     
     function postDepartmentEdit(Request $r){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $depCode = $r->input("bolumKodu");
         $depName = $r->input("bolumAdi");
         $resultID = DB::table("bolum_bilgi")
@@ -67,7 +66,7 @@ class DepartmentCtrl extends Controller
     }
     
     function departmentRemove($id){
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         DB::table("bolum_bilgi")
             ->where("BolumKodu", $id)
             ->delete();
