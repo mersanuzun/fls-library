@@ -7,11 +7,11 @@
     <span>There is no registered book.</span>
 @else
     <div class="table-responsive">
-        <h3> Book List <span class="label label-danger">{{count($books)}}<span></h3>
+        <h3> Book List <span class="label label-danger">{{$booksNumber}}<span></h3>
         <a href="book/add">
             <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add Book </button>
         </a>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover">
             <tr>
                 <th>#</th>
                 <th>Book Name</th>
@@ -36,7 +36,7 @@
             </tr>
             @endforeach
         </table>
-        <h1>sayfalama</h1>
+        {!! $books->render() !!}
     </div><!-- .table-responsive sonu -->
 @endif
 @endsection

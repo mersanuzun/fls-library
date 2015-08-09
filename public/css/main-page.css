@@ -1,3 +1,4 @@
+@import url('theme.css');
 #fls_header_bg{
     background-size: cover;
     background-position: center; 
@@ -15,7 +16,6 @@
 #main_menu{
     position: relative;
     background-color:yellowgreen;
-    /*height: 60px;*/
     width: 75%;
     top: -350px;
     margin:auto;
@@ -33,7 +33,6 @@
     overflow: hidden;
     background: white;
     display: block;
-    /*border: 5px ridge #0086e5;*/
 }
 #kitapAdi, #kitapSeviye, #yazarAdi, #yayinEvi{
     margin: auto;

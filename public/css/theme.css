@@ -1,0 +1,37 @@
+/*     INVERSE TEMASI Ä°Ã‡Ä°N DEÄÄ°ÅÄ°KLÄ°KLER   */
+.navbar-mmm {
+
+}
+.navbar-mmm .navbar-brand {
+    color: #fff;
+}
+.navbar-mmm .navbar-brand:hover,
+.navbar-mmm .navbar-brand:focus {
+    color: #fff; /*logonun Ã¼zerine gelince olan renk*/
+    background-color: #0086e5;
+}
+.navbar-mmm .navbar-text {
+    color: #fff;
+}
+.navbar-mmm .navbar-nav > li > a {
+    color: #fff;/*inaktif menÃ¼lerin rengi*/
+}
+.navbar-mmm .navbar-nav > li > a:hover,
+.navbar-mmm .navbar-nav > li > a:focus {
+    color: #fff;
+    background-color: #0086e5;
+}
+.navbar-mmm .navbar-nav > .active > a,
+.navbar-mmm .navbar-nav > .active > a:hover,
+.navbar-mmm .navbar-nav > .active > a:focus {
+    color: #fff;/*yazÄ± deÄŸiÅŸiyor*/
+    background-color: #0086e5;/*080808*//*0086e5*/
+}
+/*kendim ekledim baÅŸ*/
+.navbar-mmm .navbar-nav > .mid-active > a,
+.navbar-mmm .navbar-nav > .mid-active > a:hover,
+.navbar-mmm .navbar-nav > .mid-active > a:focus {
+    color: #fff;/*yazÄ± deÄŸiÅŸiyor*/
+    background-color: #228cfd;/*080808*//*0086e5*/
+}
+/*kendim ekledim - son*/

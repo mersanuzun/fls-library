@@ -21,7 +21,7 @@
                         <label for="kullaniciAdi"> User Name </label>
                     </td>
                     <td>
-                        <input type="text" name="kullaniciAdi" id="kullaniciAdi" required="" class="form-control">
+                        <input type="text" name="kullaniciAdi" id="kullaniciAdi" placeholder="User Name" required="" class="form-control">
                     </td>
                 </tr>
                 <tr>
@@ -29,7 +29,7 @@
                         <label for="sifre"> Password </label>
                     </td>
                     <td>
-                        <input type="password" name="sifre" id="sifre" required="" class="form-control">
+                        <input type="password" name="sifre" id="sifre" placeholder="Password" required="" class="form-control">
                     </td>
                 </tr>
                 <tr> 

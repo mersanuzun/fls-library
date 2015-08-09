@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap.vertical-tabs.min.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/style.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/main-page.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap.vertical-tabs.min.css') }}">
     </head>
     <body>
         <div id="fls_header_bg" style="background-image: url({{ URL::asset('/img/page-header.JPG') }});"></div>

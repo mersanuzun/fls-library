@@ -11,12 +11,15 @@ use DB;
 class BookCtrl extends Controller
 {
     function bookList(){
-        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
+        if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");     
+        $booksNumber = count(DB::table('kitap_bilgi')
+                ->join('kitap_seviye_bilgi', 'kitap_bilgi.KitapSeviyeNo', '=', 'kitap_seviye_bilgi.SeviyeNo')
+                ->get());
         $books = DB::table('kitap_bilgi')
                 ->join('kitap_seviye_bilgi', 'kitap_bilgi.KitapSeviyeNo', '=', 'kitap_seviye_bilgi.SeviyeNo')
-                ->get();
+                ->paginate(10);
        
-        return view('book.index', ['books' => $books]);
+        return view('book.index', ['books' => $books, 'booksNumber' => $booksNumber]);
     }
     
     function bookAdd(){
@@ -97,10 +100,12 @@ class BookCtrl extends Controller
     // Book Level Management
     function bookLevelList(){
          if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
+        $bookLevelsNumber = count(DB::table('kitap_seviye_bilgi')
+                ->get());
         $bookLevels = DB::table('kitap_seviye_bilgi')
-                ->get();
+                ->paginate(10);
        
-        return view('book.level.index', ['bookLevels' => $bookLevels]);
+        return view('book.level.index', ['bookLevels' => $bookLevels, 'bookLevelsNumber' => $bookLevelsNumber]);
     }
     
     function bookLevelAdd(){

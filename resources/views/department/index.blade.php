@@ -9,11 +9,11 @@
         <span>There is no registered department.</span>
     @else
         <div class="table-responsive">
-            <h3> Department List <span class="label label-danger">{{count($departments)}}<span></h3>
+            <h3> Department List <span class="label label-danger">{{$departmentsNumber}}<span></h3>
             <a href="department/add">
                 <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add Department </button>
             </a>
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered table-hover">
                 <tr>
                     <th>Department Number</th>
                     <th>Department Name</th>
@@ -34,7 +34,7 @@
                 </tr>
                 @endforeach
             </table>
-                        <h1>sayfalama</h1>
+            {!! $departments->render() !!}
         </div><!-- .table-responsive sonu -->
     @endif
 @endsection

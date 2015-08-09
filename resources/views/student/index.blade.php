@@ -9,11 +9,11 @@
         <span>There is no registered student.</span>
     @else
         <div class="table-responsive">
-            <h3> Student List <span class="label label-danger">{{count($students)}}<span></h3>
+            <h3> Student List <span class="label label-danger">{{($studentsNumber)}}<span></h3>
             <a href="student/add">
                 <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add Student </button>
             </a>
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered table-hover">
                 <tr>
                     <th>Number</th>
                     <th>Name</th>
@@ -40,7 +40,7 @@
                 </tr>
                 @endforeach
             </table>
-                        <h1>sayfalama</h1>
+            {!! $students->render() !!}
         </div><!-- .table-responsive sonu -->
     @endif
 @endsection

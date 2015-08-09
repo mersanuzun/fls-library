@@ -10,7 +10,7 @@
     <a href="user-management/add">
         <button id="tableUstuBtn" class="btn btn-success right" type="button"><span class="glyphicon glyphicon-plus"></span> Add User </button>
     </a>
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover">
         <tr>
             <th> User Name </th>
             <th> User Account Type </th>

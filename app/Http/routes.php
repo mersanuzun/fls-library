@@ -1,12 +1,4 @@
 <?php
-Route::get("/faq", function(){
-    return view("main.faq");
-});
-
-Route::get("/info", function(){
-    return view("main.info");
-});
-
 // Librarian Page
 Route::get("/management/librarian", "LibrarianCtrl@index");
 Route::get("/management/librarian/circulation", "LibrarianCtrl@circulation");
@@ -63,4 +55,11 @@ Route::get("/management/booklevel/remove/{id}", "BookCtrl@bookLevelRemove");
 
 //Mainpage
 Route::get("/", "MainPageCtrl@index");
+Route::get("/faq", function(){
+    return view("main.faq");
+});
+
+Route::get("/info", function(){
+    return view("main.info");
+});
 Route::post("/search", "MainPageCtrl@postSearchController");

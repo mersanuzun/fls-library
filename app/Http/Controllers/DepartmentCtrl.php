@@ -12,10 +12,12 @@ class DepartmentCtrl extends Controller
 {
     function departmentList(){
         if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
+        $departmentsNumber = count(DB::table('bolum_bilgi')
+                ->get());
         $departments = DB::table('bolum_bilgi')
-                ->get();
+                ->paginate(10);
        
-        return view('department.index', ['departments' => $departments]);
+        return view('department.index', ['departments' => $departments, 'departmentsNumber' => $departmentsNumber]);
     }
     
     function departmentAdd(){

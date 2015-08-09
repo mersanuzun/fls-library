@@ -1,3 +1,18 @@
-.menu {
-    display : inline-block;
+@import url('theme.css');
+table th{
+    background-color: #13a1df;
+    color: #fff;
+    padding: 5px;
+    font-size: 1em;
+    text-align: center;
+}
+table td{
+    margin: auto;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+}
+.form-control:focus{
+    border: 2px #13a1df;
+    border-style: solid;
 }
