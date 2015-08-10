@@ -13,11 +13,7 @@ class AdminCtrl extends Controller{
     
     // Admin Index Page
     public function index(){
-<<<<<<< HEAD
         if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
-        return view("admin.index");
-=======
-        if (!LoginCtrl::isEnter()) return redirect("/auth/login");
         $studentNumber = count(DB::table('ogrenci_bilgi')
                 ->join('bolum_bilgi', 'bolum_bilgi.BolumKodu', '=', 'ogrenci_bilgi.OgrenciBolumKodu')
                 ->get());
@@ -27,16 +23,14 @@ class AdminCtrl extends Controller{
         $users = DB::table('kullanici_bilgi')
                 ->join("kullanici_turu_bilgi", "kullanici_turu_bilgi.KullaniciTuruNo", "=", "kullanici_bilgi.KullaniciTuruNo")
                 ->get();
-        //echo $studentNumber . "  " . $bookNumber;
         return view("admin.index", ['studentNumber' => $studentNumber, 'bookNumber'=> $bookNumber, 'users' => $users]);
->>>>>>> a082a76bca8e1e61b3b40b2404d8fd6646b80482
         
     }
 
     // Admin Reports Page
-    public function reports()
-    {
+    public function reports(){
         if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
+        
         return view("admin.reports");
     }
     
@@ -53,8 +47,10 @@ class AdminCtrl extends Controller{
     public function userManagementAdd(){
         if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
         $users = DB::table("kullanici_turu_bilgi")->get();
+        
         return view("admin.user-manage-add")->with("users", $users);
     }
+    
     public function postUserManagementAdd(Request $r){
         if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
         $username = $r->input("kullaniciAdi");
@@ -82,7 +78,17 @@ class AdminCtrl extends Controller{
         }
         
     }
+
+    public function userManagementEdit($id){
+        if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
+        $user = DB::table('kullanici_bilgi')
+                ->where('KullaniciNo', "=", $id)
+                ->first();
+        return view("admin.user-manage-edit", ['user' => $user]);
+    }
+    
     public function postUserManagementEdit(Request $r, $kullaniciNo){
+        if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
         $newPassword = $r->input("yeniSifre");
         $newPasswordAgain = $r->input("yeniSifreTekrar");
         if ($newPassword != $newPasswordAgain){
@@ -92,14 +98,8 @@ class AdminCtrl extends Controller{
         DB::table("kullanici_bilgi")
             ->where("KullaniciNo", "=", $kullaniciNo)
             ->update(["KullaniciSifre" => $newPassword]);
+        
         return redirect("/management/admin/user-management");
-    }
-    public function userManagementEdit($id){
-        if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
-        $user = DB::table('kullanici_bilgi')
-                ->where('KullaniciNo', "=", $id)
-                ->first();
-        return view("admin.user-manage-edit", ['user' => $user]);
     }
     
     public function userManagementRemove($id){
@@ -107,6 +107,7 @@ class AdminCtrl extends Controller{
         DB::table("kullanici_bilgi")
             ->where("KullaniciNo", "=", $id)
             ->delete();
+        
         return redirect("/management/admin/user-management");
     }
 

@@ -35,7 +35,11 @@
     background-color: #228cfd;/*080808*//*0086e5*/
 }
 
-
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
 /*btn btn-mmm*/
 .btn-mmm {
   color: #fff;
