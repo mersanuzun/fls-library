@@ -27,10 +27,7 @@
             <td>{{$student->PlanlananVerilisTarihi}}</td>  
         </tr>    
         @endforeach
-
-
     </table>
-    <h1>sayfalama</h1>
 </div><!-- .table-responsive sonu -->
 @endif
 @endsection

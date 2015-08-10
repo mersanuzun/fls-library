@@ -5,100 +5,108 @@
 
 
 @section("content")
-<div id="ver">
-   <form action="/management/librarian/circulation" method="post">
+<div class="col-md-6 table-responsive">
+    <h3> Book Loan <span class="label label-danger"></span></h3>
+    <form action="/management/librarian/circulation" method="post">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <table>
+        <table class="table table-hover">
             <tr>
-                <td>Book's No</td>
                 <td>
-                    <input type="text" name="bookNo" required="">
+                    <label for="bookLevel"> Book's Number </label>
+                </td>
+                <td>
+                    <input type="text" name="bookNo" class="form-control" placeholder="Book's Number" required="" autofocus="true">
                 </td>
             </tr>
             <tr>
-                <td>Level</td>
                 <td>
-                    <input type="text" name="bookLevel" required="">
+                    <label for="bookLevel"> Book Level </label>
+                </td>
+                <td>
+                    <input type="text" name="bookLevel" class="form-control" placeholder="Book's Level" required="">
                 </td>
             </tr>
             <tr>
-                <td>Student's No</td>
                 <td>
-                    <input type="text" name="studentNo" required="">
+                    <label for="studentNo"> Student's Number </label>
+                </td>
+                <td>
+                    <input type="text" name="studentNo" class="form-control" placeholder="Student's Number" required="">
                 </td>
             </tr>
             <tr>
-                <td>Circulation Start Date</td>
                 <td>
-                    <input type="date" name="startDate" required="">
+                    <label for="startDate"> Circulation Start Date </label>
+                </td>
+                <td>
+                    <input type="date" name="startDate" class="form-control" placeholder="Circulation Start Date" required="">
                 </td>
             </tr>
             <tr>
-                <td>Circulation Estimated Finish Date</td>
                 <td>
-                    <input type="date" name="estimatedFinishDate" required="">
+                    <label for="estimatedFinishDate"> Circulation Estimated Finish Date </label>
+                </td>
+                <td>
+                    <input type="date" name="estimatedFinishDate" class="form-control" placeholder="Circulation Estimated Finish Date" required="">
                 </td>
             </tr>
             <tr>
-                <td></td>
-                <td>
-                    <input type="submit" name="startCirculation" value="Start Circulation">
+                <td colspan="2">
+                    <input type="submit" name="startCirculation" value="Start Circulation" class="form-control btn btn-mmm">
                 </td>
             </tr>
         </table>
     </form>
 </div>
 
-<div id="al">
-   <form action="/management/librarian/circulation" method="post">
+<div class="col-md-6 table-responsive">
+    <h3> Book Deliver <span class="label label-danger"></span></h3>
+    <form action="/management/librarian/circulation" method="post">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <table class="table table-hover">
             <tr>
                 <td>
-                    <label for="teslimKitapNo">Book's No: </label>
+                    <label for="teslimKitapNo"> Book's Number </label>
                 </td>
                 <td>
-                    <input type="text" name="deliveredBookNo" id="teslimKitapNo" required="" maxlength="10">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="deliveredBookLevel">Level</label>
-                </td>
-                <td>
-                    <input type="text" name="deliveredBookLevel">
+                    <input type="text" name="deliveredBookNo" id="teslimKitapNo" class="form-control" placeholder="Book's Number" required="" maxlength="10">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label for="deliveredStudentNo">Student's Number: </label>
+                    <label for="deliveredBookLevel"> Book's Level </label>
                 </td>
                 <td>
-                    <input type="text" name="deliveredStudentNo" id="deliveredStudentNo" required="" maxlength="9">
+                    <input type="text" name="deliveredBookLevel" class="form-control" placeholder="Book's Level" required="">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label for="teslimEdilenTarih">Circulation Finish Date: </label>
+                    <label for="deliveredStudentNo"> Student's Number </label>
                 </td>
                 <td>
-                    <input type="date" name="finishDate" id="teslimEdilenTarih" required="">
-                <td>
+                    <input type="text" name="deliveredStudentNo" id="deliveredStudentNo" class="form-control" placeholder="Student's Number" required="" maxlength="9">
+                </td>
             </tr>
             <tr>
                 <td>
-                    <label></label>
+                    <label for="teslimEdilenTarih"> Circulation Finish Date </label>
                 </td>
                 <td>
-                    <input type="submit" name="finishCirculation" value="Finish the Circulation" >
+                    <input type="date" name="finishDate" id="teslimEdilenTarih" class="form-control" placeholder="Circulation Finish Date" required="">
+                <td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="finishCirculation" value="Finish the Circulation" class="form-control btn btn-mmm">
                 </td>
             </tr>
         </table>
-   </form>
-   <div id="message">
-       @if (session("message"))
-           {{session("message")}}
-       @endif
-   </div>
+    </form>
+    <div id="message">
+        @if (session("message"))
+        {{session("message")}}
+        @endif
+    </div>
 </div>
 @endsection

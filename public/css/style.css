@@ -21,10 +21,6 @@ table td{
     border: 2px #13a1df;
     border-style: solid;
 }
-#dynamic-content{
-    width: 1000px;
-    margin: auto;
-}
 a:hover{
     text-decoration: none;
 }

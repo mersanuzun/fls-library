@@ -10,7 +10,7 @@
 @if (false)
     <span>There is no such that book.</span>
 @else
-<div class="table-responsive">
+<div class="col-md-12 table-responsive">
     <h3> Search Result <span class="label label-danger">{{$booksNumber}}</span></h3>
     <!-- Table -->
     <table class="table table-striped">

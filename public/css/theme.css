@@ -34,4 +34,94 @@
     color: #fff;/*yazÄ± deÄŸiÅŸiyor*/
     background-color: #228cfd;/*080808*//*0086e5*/
 }
+
+
+/*btn btn-mmm*/
+.btn-mmm {
+  color: #fff;
+  background-color: #13a1df;
+  border-color: #0086e5;/*2e6da4*/
+}
+.btn-mmm:hover,
+.btn-mmm:focus,
+.btn-mmm.focus,
+.btn-mmm:active,
+.btn-mmm.active,
+.open > .dropdown-toggle.btn-mmm {
+  color: #fff;
+  background-color: #13a1df;
+  border-color: #0086e5;/*2e6da4*/
+}
+.btn-mmm:active,
+.btn-mmm.active,
+.open > .dropdown-toggle.btn-mmm {
+  background-image: none;
+}
+.btn-mmm.disabled,
+.btn-mmm[disabled],
+fieldset[disabled] .btn-mmm,
+.btn-mmm.disabled:hover,
+.btn-mmm[disabled]:hover,
+fieldset[disabled] .btn-mmm:hover,
+.btn-mmm.disabled:focus,
+.btn-mmm[disabled]:focus,
+fieldset[disabled] .btn-mmm:focus,
+.btn-mmm.disabled.focus,
+.btn-mmm[disabled].focus,
+fieldset[disabled] .btn-mmm.focus,
+.btn-mmm.disabled:active,
+.btn-mmm[disabled]:active,
+fieldset[disabled] .btn-mmm:active,
+.btn-mmm.disabled.active,
+.btn-mmm[disabled].active,
+fieldset[disabled] .btn-mmm.active {
+  background-color: #228cfd;/*080808*/
+  border-color: #0086e5;/*2e6da4*/
+}
+.btn-mmm .badge {
+  color: #13a1df;
+  background-color: #fff;
+}
+/*theme dosyası*/
+.btn-mmm {/*
+  background-image: -webkit-linear-gradient(top, #337ab7 0%, #265a88 100%);
+  background-image:      -o-linear-gradient(top, #337ab7 0%, #265a88 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#337ab7), to(#265a88));
+  background-image:         linear-gradient(to bottom, #337ab7 0%, #265a88 100%);*/
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff265a88', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  border-color: #245580;
+}
+.btn-mmm:hover,
+.btn-mmm:focus {
+  background-color: #228cfd;/*228cfd*/
+  background-position: 0 -15px;
+}
+.btn-mmm:active,
+.btn-mmm.active {
+  background-color: #265a88;
+  border-color: #245580;
+}
+.btn-mmm.disabled,
+.btn-mmm:disabled,
+.btn-mmm[disabled] {
+  background-color: #265a88;
+  background-image: none;
+}
+@media (min-width: 768px) {
+    .panel {
+        width: 700px;
+    }
+}
+@media (min-width: 992px) {
+    .panel {
+      width: 900px;
+    }
+}
+@media (min-width: 1200px) {
+    .panel {
+      width: 1100px;
+    }
+}
 /*kendim ekledim - son*/

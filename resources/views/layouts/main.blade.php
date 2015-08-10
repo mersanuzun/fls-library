@@ -7,6 +7,8 @@
         <link rel="icon" type="image/png" href="{{ URL::asset('/img/favicon.ico') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap.vertical-tabs.min.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('/css/sb-admin-2.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/style.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/main-page.css') }}">
     </head>
@@ -48,12 +50,10 @@
             @yield('content') 
         </div>
         
-        <!-- Footer Begin -->
-        <footer>
-            <div class="hr"></div>
-            
-            <div class='copyright'>
-                <p>&COPY; 2015 Muğla Sıtkı Koçman University Foreign Language School</p>
+        <!-- Footer Begin 
+        <footer class="footer">
+            <div class="container">
+                <p class="text-center">&COPY; 2015 Muğla Sıtkı Koçman University Foreign Language School</p>
             </div>
         </footer><!-- Footer End -->
         
