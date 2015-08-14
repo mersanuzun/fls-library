@@ -31,7 +31,14 @@
         </tr>
         @endforeach
     </table>
-    {!! $books->render() !!}
+    @if (session("searchType") == "araButonuKitap")
+        {!! $books->appends(["searchButton" => "bookName"])->render() !!}
+    @elseif (session("searchType") == "araButonuSeviye")
+        {!! $books->appends(["searchButton" => "bookLevel"])->render() !!}
+    @elseif (session("searchType") == "araButonuSeviye")
+        {!! $books->appends(["searchButton" => "bookAuther"])->render() !!}
+    @endif
+    
 </div>
 @endif
 @endsection

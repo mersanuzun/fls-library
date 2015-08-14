@@ -62,4 +62,5 @@ Route::get("/faq", function(){
 Route::get("/info", function(){
     return view("main.info");
 });
-Route::post("/search", "MainPageCtrl@postSearchController");
+Route::post("/search", "MainPageCtrl@postSearchControl");
+Route::get("/search", "MainPageCtrl@show");

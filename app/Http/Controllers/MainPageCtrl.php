@@ -8,23 +8,32 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class MainPageCtrl extends Controller{
+    public $value;
+    public $request;
     public function index(){
         $bookLevels = DB::table('kitap_seviye_bilgi')
                 ->get();
         return view("main.index", ['bookLevels' => $bookLevels]);
     }
-    public function postSearchController(Request $r){
+    public function postSearchControl(Request $r){
+
+        session(["bookName" => $r->input("aranacakKitap")]);
+        session(["onlyAvailable" => $r->input("onlyAvailable")]);
+        session(["level" => $r->input("seviyeSec")]);
         if ($r->input("araButonuKitap")){
+            session(["searchType" => "araButonuKitap"]);
             return $this->searchBook($r);
         }else if ($r->input("araButonuSeviye")){
+            session(["searchType" => "araButonuSeviye"]);
             return $this->searchLevel($r);
         }else if($r->input("araButonuYazar")){
+            session(["searchType" => "araButonuSeviye"]);
             return $this->searchAuther($r);
         }
     }
-    public function searchBook($r){
-        $bookName = $r->input("aranacakKitap");
-        if ($r->input("onlyAvailable")){
+    public function searchBook(){
+        $bookName = session("bookName");
+        if (session("onlyAvailable")){
             $booksNumber = count(DB::table("kitap_bilgi")
                 ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
                 ->where("KitapAdi", "LIKE", "%" . $bookName ."%")
@@ -54,29 +63,30 @@ class MainPageCtrl extends Controller{
         return view("main.search", ['books' => $books, 'booksNumber' => $booksNumber]);
         //return view("main.search")->with("books", $books)->with('booksNumber', $booksNumber);
     }
-    public function searchLevel($r){
-        if ($r->input("onlyAvailable")){
+    public function searchLevel(){
+        $level = session("level");
+        if (session("onlyAvailable")){
             $booksNumber = count(DB::table("kitap_bilgi")
             ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
-            ->where("KitapSeviyeNo", "=", $r->input("seviyeSec"))
+            ->where("KitapSeviyeNo", "=", $level)
             ->where("VarMi", "=", "1")->get());
             
             $books = DB::table("kitap_bilgi")
             ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
-            ->where("KitapSeviyeNo", "=", $r->input("seviyeSec"))
+            ->where("KitapSeviyeNo", "=", $level)
             ->where("VarMi", "=", "1")->paginate(10);
         }else{
             $booksNumber = count(DB::table("kitap_bilgi")
                 ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
                 ->leftJoin("odunc", "odunc.KitapNo", "=", 
                            DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
-            ->where("kitap_bilgi.KitapSeviyeNo", "=", $r->input("seviyeSec"))->get());
+            ->where("kitap_bilgi.KitapSeviyeNo", "=", $level)->get());
             
             $books = DB::table("kitap_bilgi")
                 ->join("kitap_seviye_bilgi", "kitap_bilgi.KitapSeviyeNo", "=", "kitap_seviye_bilgi.SeviyeNo")
                 ->leftJoin("odunc", "odunc.KitapNo", "=", 
                            DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
-            ->where("kitap_bilgi.KitapSeviyeNo", "=", $r->input("seviyeSec"))->paginate(10);
+            ->where("kitap_bilgi.KitapSeviyeNo", "=", $level)->paginate(10);
         }
         return view("main.search", ['books' => $books, 'booksNumber' => $booksNumber]);
         //return view("main.search")->with("books", $books)->with('booksNumber', $booksNumber);
@@ -111,5 +121,19 @@ class MainPageCtrl extends Controller{
         }
         return view("main.search", ['books' => $books, 'booksNumber' => $booksNumber]);
         //return view("main.search")->with("books", $books)->with('booksNumber', $booksNumber);
+    }
+    public function show(){
+        if (session("searchType") && isset($_GET["searchButton"])){
+            if ($_GET["searchButton"] == "bookName"){
+                return $this->searchBook();
+            }else if ($_GET["searchButton"] == "bookLevel"){
+                return $this->searchLevel();
+            }else {
+                return $this->searchAuther();
+            }
+        }else {
+            return redirect("/");
+        }
+        
     }
 }

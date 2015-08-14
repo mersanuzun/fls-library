@@ -12,6 +12,8 @@ class LibrarianCtrl extends Controller{
         if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
         $undelivered = [];
         $today = date("Y-m-d");
+        $datetime1 = date_create($today);
+        
         $delivered = DB::table("odunc")
                     ->join("ogrenci_bilgi", "ogrenci_bilgi.OgrenciNo", "=", "odunc.OgrenciNo")
                     ->join("kitap_bilgi", "odunc.KitapNo", "=", 
@@ -20,7 +22,12 @@ class LibrarianCtrl extends Controller{
                     ->get();
         foreach($delivered as $data){
             if ($data->TeslimEdilenTarihi) continue;
-            else array_push($undelivered, $data);
+            else {
+                $datetime2 = date_create($data->PlanlananVerilisTarihi);
+                $interval = date_diff($datetime1, $datetime2);
+                $data->days = $interval->format('%a days');
+                array_push($undelivered, $data);   
+            }
         }
         return view("librarian.index", ["undelivered" => $undelivered]);
     }
@@ -36,7 +43,7 @@ class LibrarianCtrl extends Controller{
             $this->finishCirculation($r);
         }
         //return view("librarian.circulation");
-        return redirect("/management/librarian/circulation")->with("err", "ersan");
+        return redirect("/management/librarian/circulation");
     }
     public function startCirculation($r){
         $bookNo = $r->input("bookNo");
