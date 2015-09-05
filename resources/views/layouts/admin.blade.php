@@ -6,9 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ URL::asset('/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/metisMenu.min.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('/css/timeline.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('/css/sb-admin-2.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('/css/sb-admin-2.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('/css/admin-page.css') }}">
     </head>
     <body>

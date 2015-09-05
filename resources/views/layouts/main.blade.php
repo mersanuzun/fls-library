@@ -33,8 +33,6 @@
                 <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
                     <ul class='nav navbar-nav'> 
                         <li><a href='/'><span class='glyphicon glyphicon-home'></span> Home </a></li>
-                        <li><a href='/info'><span class='glyphicon glyphicon-info-sign'></span> Info</a></li>
-                        <li><a href='/faq'><span class='glyphicon glyphicon-question-sign'></span> FAQ  </a></li> 
                     </ul>
                     <ul class='nav navbar-nav navbar-right'>
                         <li>
@@ -50,10 +48,11 @@
             @yield('content') 
         </div>
         
-        <!-- Footer Begin 
+        <!-- Footer Begin -->
         <footer class="footer">
             <div class="container">
-                <p class="text-center">&COPY; 2015 Muğla Sıtkı Koçman University Foreign Language School</p>
+                <p class="text-muted"> &COPY; 2015 Muğla Sıtkı Koçman University Foreign Language School. </p>
+                <p class="text-muted"> Design and Development: <a href="https://github.com/mersanuzun/fls-library/blob/master/readme.md" target="_blank">TEAM</a> </p>
             </div>
         </footer><!-- Footer End -->
         

@@ -55,12 +55,5 @@ Route::get("/management/booklevel/remove/{id}", "BookCtrl@bookLevelRemove");
 
 //Mainpage
 Route::get("/", "MainPageCtrl@index");
-Route::get("/faq", function(){
-    return view("main.faq");
-});
-
-Route::get("/info", function(){
-    return view("main.info");
-});
 Route::post("/search", "MainPageCtrl@postSearchControl");
 Route::get("/search", "MainPageCtrl@show");

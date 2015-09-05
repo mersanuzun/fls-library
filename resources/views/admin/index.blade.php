@@ -1,12 +1,9 @@
 @extends("layouts.admin")
-
-
 @section("title", "Admin Dashboard")
-
 
 @section("content")
 <div class="row">
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-3 col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
@@ -20,11 +17,14 @@
                 </div>
             </div>
             <div class="panel-footer">
-
+                <div class="clearfix"></div>
             </div>
-        </div>
+        </div> 
     </div>
-    <div class="col-lg-6 col-md-12">
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-3 col-md-6">
         <div class="panel panel-green">
             <div class="panel-heading">
                 <div class="row">
@@ -38,14 +38,14 @@
                 </div>
             </div>
             <div class="panel-footer">
-
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
 </div>
 <!-- /.row -->
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-user fa-fw"></i> Users
