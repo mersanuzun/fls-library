@@ -16,3 +16,7 @@ table td{
     border: 2px #13a1df;
     border-style: solid;
 }
+#message {
+    text-align: center; 
+    font-weight: bold;
+}

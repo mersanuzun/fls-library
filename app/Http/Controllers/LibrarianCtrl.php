@@ -49,7 +49,7 @@ class LibrarianCtrl extends Controller{
         $bookNo = $r->input("bookNo");
         $bookLevel = $r->input("bookLevel");
         $studentNo = $r->input("studentNo");
-        $startDate = $r->input("startDate");
+        $startDate = date("Y-m-d");
         $estimatedFinishDate = $r->input("estimatedFinishDate");
         if (!is_numeric($bookNo) || !is_numeric($bookLevel) || !is_numeric($studentNo)){
             session(["message" => "Hata"]);

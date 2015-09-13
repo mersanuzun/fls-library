@@ -34,14 +34,7 @@
                     <input type="text" name="studentNo" class="form-control" placeholder="Student's Number" required="">
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <label for="startDate"> Circulation Start Date </label>
-                </td>
-                <td>
-                    <input type="date" name="startDate" class="form-control" placeholder="Circulation Start Date" required="">
-                </td>
-            </tr>
+            
             <tr>
                 <td>
                     <label for="estimatedFinishDate"> Circulation Estimated Finish Date </label>
@@ -103,10 +96,11 @@
             </tr>
         </table>
     </form>
-    <div id="message">
-        @if (session("message"))
-        {{session("message")}}
-        @endif
-    </div>
+    
+</div>
+<div id="message">
+    @if (session("message"))
+    {{session("message")}}
+    @endif
 </div>
 @endsection
