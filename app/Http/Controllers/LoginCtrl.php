@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class LoginCtrl extends Controller{
     
-    public function passCrypt($pass){
+    public static function passCrypt($pass){
         $passOrder = array("md5", "sha1", "md5", "sha1");
         foreach ($passOrder as $alg) {
             $pass = $alg($pass);
@@ -23,7 +23,7 @@ class LoginCtrl extends Controller{
     
     public function postLogin(Request $r){
         $username = $r->input("username");
-        $password = $r->input("password");
+        $password = $this->passCrypt($r->input("password"));
         $userDB = DB::table("kullanici_bilgi")
             ->where("KullaniciAdi", "=", $username)->get();
         if ($userDB){
@@ -31,10 +31,10 @@ class LoginCtrl extends Controller{
                 session(["auth" => $userDB[0]->KullaniciTuruNo]);
                 session(["username" => $userDB[0]->KullaniciAdi]);
             }else {
-                echo "by by";
+                echo "Authentication is not success.";
             }
         }else {
-            echo "kullanici  yok";
+            echo "Authentication is not success.";
         }
         return $this->check();
     }

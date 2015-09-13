@@ -34,7 +34,6 @@
                     <input type="text" name="studentNo" class="form-control" placeholder="Student's Number" required="">
                 </td>
             </tr>
-            
             <tr>
                 <td>
                     <label for="estimatedFinishDate"> Circulation Estimated Finish Date </label>

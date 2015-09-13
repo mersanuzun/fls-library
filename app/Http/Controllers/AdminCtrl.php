@@ -54,7 +54,7 @@ class AdminCtrl extends Controller{
     public function postUserManagementAdd(Request $r){
         if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
         $username = $r->input("kullaniciAdi");
-        $password = $r->input("sifre");
+        $password = LoginCtrl::passCrypt($r->input("sifre"));
         $userType = $r->input("kullaniciSecim");
         $result = DB::table("kullanici_bilgi")
             ->where("KullaniciAdi", "=", $username)
@@ -89,8 +89,8 @@ class AdminCtrl extends Controller{
     
     public function postUserManagementEdit(Request $r, $kullaniciNo){
         if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
-        $newPassword = $r->input("yeniSifre");
-        $newPasswordAgain = $r->input("yeniSifreTekrar");
+        $newPassword = LoginCtrl::passCrypt($r->input("yeniSifre"));
+        $newPasswordAgain = LoginCtrl::passCrypt($r->input("yeniSifreTekrar"));
         if ($newPassword != $newPasswordAgain){
             session()->flash("message", "The passwords are not match.");
             return back();
