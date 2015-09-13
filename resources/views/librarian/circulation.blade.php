@@ -81,25 +81,16 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <label for="teslimEdilenTarih"> Circulation Finish Date </label>
-                </td>
-                <td>
-                    <input type="date" name="finishDate" id="teslimEdilenTarih" class="form-control" placeholder="Circulation Finish Date" required="">
-                <td>
-            </tr>
-            <tr>
                 <td colspan="2">
                     <input type="submit" name="finishCirculation" value="Finish the Circulation" class="form-control btn btn-mmm">
                 </td>
             </tr>
         </table>
     </form>
-    
 </div>
 <div id="message">
     @if (session("message"))
-    {{session("message")}}
+        {{session("message")}}
     @endif
 </div>
 @endsection

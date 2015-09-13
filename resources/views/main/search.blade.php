@@ -13,19 +13,15 @@
 <div class="col-md-12 table-responsive">
     <h3> Search Result <span class="label label-danger">{{$booksNumber}}</span></h3>
     <!-- Table -->
-    <table class="table table-striped">
+    <table class="table table-striped" style="width: 100%;">
         <tr>
             <th>Book Name</th>
-            <th>Author Name</th>
-            <th>Publisher</th>
             <th>Book Level</th>
             <th>Available on</th>
         </tr>
         @foreach($books as $book)
         <tr>
             <td>{{$book->KitapAdi}}</td>
-            <td>{{$book->YazarAdi}}</td>
-            <td>{{$book->YayinEvi}}</td>
             <td>{{$book->SeviyeAdi}} ({{$book->SeviyeNo}})</td>
             <td>@if($book->VarMi) {{'NOW'}} @else {{$book->PlanlananVerilisTarihi}} @endif</td>
         </tr>

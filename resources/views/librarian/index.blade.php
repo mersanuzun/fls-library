@@ -23,7 +23,7 @@
         @foreach($undelivered as $student)
         <tr>
             <td>{{$student->OgrenciNo}}</td>
-            <td>{{$student->OgrenciAdi}}</td>
+            <td>{{$student->OgrenciAdi}} {{$student->OgrenciSoyadi}}</td>
             <td>{{$student->KitapSeviyeNo}}-{{$student->KitapNo}}</td> 
             <td>{{$student->KitapAdi}}</td>
             <td>{{$student->VerilisTarihi}}</td>
