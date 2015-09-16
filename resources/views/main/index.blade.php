@@ -19,9 +19,9 @@
                 <form action="/search" method="post" class="form-signin">
                    {!! csrf_field() !!}
                     <label for="aranacakKitap" id="aranacakKitapLabel" class="form-control"> Enter Book Name </label>
-                    <input type="text" name="aranacakKitap" id="aranacakKitap" class="form-control" placeholder="Search by Book Name" autofocus="true" required/>
-                    <input type="checkbox" name="onlyAvailable" id="onlyAvailable" class=""/> <strong>Show Only Available Books</strong>   
-                    <input type="submit" id="araButonuKitap" name="araButonuKitap" value="Search"  class="btn btn-mmm btn-block"/>
+                    <input type="text" name="aranacakKitap" class="form-control" placeholder="Search by Book Name" autofocus required/>
+                    <input type="checkbox" name="onlyAvailable" class=""/> <strong>Show Only Available Books</strong>   
+                    <input type="submit" name="araButonuKitap" value="Search"  class="btn btn-mmm btn-block"/>
                 </form>
             </div><!-- .form-group sonu -->            
         </div>
@@ -29,14 +29,14 @@
             <div class="form-group">
                 <form action="/search" method="post" class="form-signin">
                    {!! csrf_field() !!}
-                    <label for="seviyeSec" id="seviyeSecLabel" class="form-control"> Choose Level </label>
-                    <select name="seviyeSec" id="seviyeSec" class="form-control">
+                    <label for="seviyeSec" class="form-control"> Choose Level </label>
+                    <select name="seviyeSec" class="form-control">
                         @foreach ($bookLevels as $level)
                             <option value='{{$level->SeviyeNo}}'>{{$level->SeviyeAdi}} ({{$level->SeviyeNo}})</option>
                         @endforeach
                     </select>
-                    <input type="checkbox" name="onlyAvailable" id="onlyAvailable" class=""/> <strong>Show Only Available Books</strong>   
-                    <input type="submit" id="araButonuSeviye" name="araButonuSeviye" value="Search" onclick="TextBoxKontrol()" class="btn btn-mmm btn-block"/>
+                    <input type="checkbox" name="onlyAvailable" class=""/> <strong>Show Only Available Books</strong>   
+                    <input type="submit" name="araButonuSeviye" value="Search" class="btn btn-mmm btn-block"/>
 
                 </form>
             </div><!-- .form-group sonu -->    
@@ -45,10 +45,10 @@
             <div class="form-group">
                 <form action="/search" method="post" class="form-signin">
                     {!! csrf_field() !!}
-                    <label for="aranacakKelime" id="aranacakYazarLabel" class="form-control"> Enter Author Name </label>
-                    <input type="text" name="aranacakYazar" id="aranacakYazar" class="form-control" placeholder="Search by Author Name" autofocus="true" required/>
-                    <input type="checkbox" name="onlyAvailable" id="onlyAvailable" class=""/> <strong>Show Only Available Books</strong>   
-                    <input type="submit" id="araButonuYazar" name="araButonuYazar" value="Search" onclick="TextBoxKontrol()" class="btn btn-mmm btn-block"/>
+                    <label for="aranacakKelime" class="form-control"> Enter Author Name </label>
+                    <input type="text" name="aranacakYazar" class="form-control" placeholder="Search by Author Name" autofocus required/>
+                    <input type="checkbox" name="onlyAvailable" class=""/> <strong>Show Only Available Books</strong>   
+                    <input type="submit" name="araButonuYazar" value="Search" class="btn btn-mmm btn-block"/>
                 </form>
             </div><!-- .form-group sonu -->                      
         </div>

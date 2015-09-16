@@ -15,14 +15,14 @@
                 {!! csrf_field() !!}
                 <h2 class="form-signin-heading">Please log in to continue</h2>
                 <label for="username" class="sr-only">User Name</label>
-                <input type="text" name="username" id="username" class="form-control" placeholder="User Name" required autofocus/>
+                <input type="text" name="username" class="form-control" placeholder="User Name" required autofocus/>
 
-                <label for="sifre" class="sr-only">Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required/>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password" required/>
 
-                <input type="submit" id="girisYapSubmit" name="girisYapSubmit" value="Log in" class="btn btn-lg btn-mmm btn-block"/>
+                <input type="submit" name="girisYapSubmit" value="Log in" class="btn btn-lg btn-mmm btn-block"/>
             </form>
 
-        </div> <!-- /container --> 
+        </div>
     </body>
 </html>

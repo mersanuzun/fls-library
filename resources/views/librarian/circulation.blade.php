@@ -61,7 +61,7 @@
                     <label for="teslimKitapNo"> Book's Number </label>
                 </td>
                 <td>
-                    <input type="text" name="deliveredBookNo" id="teslimKitapNo" class="form-control" placeholder="Book's Number" required="" maxlength="10">
+                    <input type="text" name="deliveredBookNo" class="form-control" placeholder="Book's Number" required="" maxlength="10">
                 </td>
             </tr>
             <tr>
@@ -77,7 +77,7 @@
                     <label for="deliveredStudentNo"> Student's Number </label>
                 </td>
                 <td>
-                    <input type="text" name="deliveredStudentNo" id="deliveredStudentNo" class="form-control" placeholder="Student's Number" required="" maxlength="9">
+                    <input type="text" name="deliveredStudentNo" class="form-control" placeholder="Student's Number" required="" maxlength="9">
                 </td>
             </tr>
             <tr>

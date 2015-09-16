@@ -32,6 +32,6 @@
         </tr>    
         @endforeach
     </table>
-</div><!-- .table-responsive sonu -->
+</div>
 @endif
 @endsection

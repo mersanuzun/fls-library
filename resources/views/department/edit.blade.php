@@ -24,7 +24,7 @@
                         <label for="bolumKodu">Department Code:</label>
                     </td>
                     <td>
-                        <input type="text" name="bolumKodu" id="bolumKodu" value="{{$department[0]->BolumKodu}}" readonly class="form-control"/>
+                        <input type="text" name="bolumKodu" value="{{$department[0]->BolumKodu}}" readonly class="form-control"/>
                     </td>
                 </tr>
                 <tr>
@@ -32,7 +32,7 @@
                         <label for="bolumAdi">Department Name:</label>
                     </td>
                     <td>
-                        <input type="text" name="bolumAdi" id="bolumAdi" value="{{$department[0]->BolumAdi}}" class="form-control" autofocus="true"/>
+                        <input type="text" name="bolumAdi" value="{{$department[0]->BolumAdi}}" class="form-control" autofocus="true"/>
                     </td>
                 </tr>
                 <tr>

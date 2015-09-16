@@ -21,7 +21,7 @@
                         <label for="bolumKodu">Department Code:</label>
                     </td>
                     <td>
-                        <input type="text" name="bolumKodu" id="bolumKodu" class="form-control" placeholder="Department Code" autofocus="true"/>
+                        <input type="text" name="bolumKodu" class="form-control" placeholder="Department Code" autofocus="true"/>
                     </td>
                 </tr>
                 <tr>
@@ -29,7 +29,7 @@
                         <label for="bolumAdi">Department Name:</label>
                     </td>
                     <td>
-                        <input type="text" name="bolumAdi" id="bolumAdi" class="form-control" placeholder="Department Name"/>
+                        <input type="text" name="bolumAdi" class="form-control" placeholder="Department Name"/>
                     </td>
                 </tr>
                 <tr>
