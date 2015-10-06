@@ -21,7 +21,7 @@ class LibrarianCtrl extends Controller{
                     ->where("PlanlananVerilisTarihi", "<", $today)
                     ->whereNull("TeslimEdilenTarihi")
                     ->paginate(10);
-        
+
         return view("librarian.index", ["undelivered" => $undelivered]);
     }
     public function circulation(){
