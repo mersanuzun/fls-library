@@ -18,7 +18,6 @@
             <th>Book Name</th>
             <th>Loan Date</th>
             <th>Estimated Deliver Date</th>
-            <th>Days</th>
         </tr>
         @foreach($undelivered as $student)
         <tr>
@@ -28,7 +27,6 @@
             <td>{{$student->KitapAdi}}</td>
             <td>{{$student->VerilisTarihi}}</td>
             <td>{{$student->PlanlananVerilisTarihi}}</td>
-            <td>{{$student->days}}</td>  
         </tr>    
         @endforeach
     </table>

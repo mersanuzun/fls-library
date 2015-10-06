@@ -14,21 +14,14 @@ class LibrarianCtrl extends Controller{
         $today = date("Y-m-d");
         $datetime1 = date_create($today);
         
-        $delivered = DB::table("odunc")
+        $undelivered = DB::table("odunc")
                     ->join("ogrenci_bilgi", "ogrenci_bilgi.OgrenciNo", "=", "odunc.OgrenciNo")
                     ->join("kitap_bilgi", "odunc.KitapNo", "=", 
                            DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
                     ->where("PlanlananVerilisTarihi", "<", $today)
+                    ->whereNull("TeslimEdilenTarihi")
                     ->get();
-        foreach($delivered as $data){
-            if ($data->TeslimEdilenTarihi) continue;
-            else {
-                $datetime2 = date_create($data->PlanlananVerilisTarihi);
-                $interval = date_diff($datetime1, $datetime2);
-                $data->days = $interval->format('%a days');
-                array_push($undelivered, $data);   
-            }
-        }
+     
         return view("librarian.index", ["undelivered" => $undelivered]);
     }
     public function circulation(){
