@@ -26,13 +26,6 @@ class AdminCtrl extends Controller{
         return view("admin.index", ['studentNumber' => $studentNumber, 'bookNumber'=> $bookNumber, 'users' => $users]);
         
     }
-
-    // Admin Reports Page
-    public function reports(){
-        if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
-        
-        return view("admin.reports");
-    }
     
     //Admin User Management Page
     public function userManagement(){
@@ -111,4 +104,31 @@ class AdminCtrl extends Controller{
         return redirect("/management/admin/user-management");
     }
 
+        // Admin Advance Manage Page
+    public function advanceManage(){
+        if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
+        
+        return view("admin.advance-manage");
+    }
+    
+    //Student Records deletion
+    public function clearStudentRecords(){
+        if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
+        DB::table("ogrenci_bilgi")
+            ->delete();
+        
+        return redirect("/management/admin/advance-manage");
+        
+    }
+    
+    //Circulation Records deletion
+    public function clearCirculationRecords(){
+        if (!LoginCtrl::isEnter(1)) return redirect("/auth/login");
+        DB::table("odunc")
+            ->delete();
+        
+        return redirect("/management/admin/advance-manage");
+        
+    }
+    
 }

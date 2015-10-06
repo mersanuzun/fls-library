@@ -14,26 +14,22 @@ class LibrarianCtrl extends Controller{
         $today = date("Y-m-d");
         $datetime1 = date_create($today);
         
-        $delivered = DB::table("odunc")
+        $undelivered = DB::table("odunc")
                     ->join("ogrenci_bilgi", "ogrenci_bilgi.OgrenciNo", "=", "odunc.OgrenciNo")
                     ->join("kitap_bilgi", "odunc.KitapNo", "=", 
                            DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
                     ->where("PlanlananVerilisTarihi", "<", $today)
-                    ->get();
-        foreach($delivered as $data){
-            if ($data->TeslimEdilenTarihi) continue;
-            else {
-                $datetime2 = date_create($data->PlanlananVerilisTarihi);
-                $interval = date_diff($datetime1, $datetime2);
-                $data->days = $interval->format('%a days');
-                array_push($undelivered, $data);   
-            }
-        }
+                    ->whereNull("TeslimEdilenTarihi")
+                    ->paginate(10);
+        
         return view("librarian.index", ["undelivered" => $undelivered]);
     }
     public function circulation(){
         if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
-        return view("librarian.circulation");
+        $bookLevels = DB::table('kitap_seviye_bilgi')
+                ->get();
+        
+        return view("librarian.circulation", ["bookLevels" => $bookLevels]);
     }
     public function circulationControl(Request $r){
         if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
@@ -83,7 +79,8 @@ class LibrarianCtrl extends Controller{
     }
     public function finishCirculation($r){
         $bookNo = $r->input("deliveredBookNo");
-        $bookLevel = $r->input("deliveredBookLevel");
+        $bookLevel = substr($r->input("deliveredBookLevel"), -2,1);
+        echo "$bookLevel";
         $studentNo = $r->input("deliveredStudentNo");
         $finishDate = date("Y-m-d");
         if (!is_numeric($bookNo) || !is_numeric($bookLevel) || !is_numeric($studentNo)){
@@ -117,9 +114,5 @@ class LibrarianCtrl extends Controller{
             $message = "There is no such that student";
         }
         session()->flash("message", $message);
-    }
-    public function denemeDB(){
-        session(["message"=>"ersan"]);
-        return redirect("/auth/login")->with("message", "ersan");
     }
 }

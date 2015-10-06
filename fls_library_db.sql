@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.4.12
 -- http://www.phpmyadmin.net
 --
--- Anamakine: localhost
--- Üretim Zamanı: 05 Ağu 2015, 13:29:40
--- Sunucu sürümü: 5.6.16
--- PHP Sürümü: 5.5.9
+-- Host: 127.0.0.1
+-- Generation Time: Oct 06, 2015 at 10:42 PM
+-- Server version: 5.6.25
+-- PHP Version: 5.6.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,15 +14,15 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Veritabanı: `fls_library_db`
+-- Database: `fls_library_db`
 --
 
 DELIMITER $$
 --
--- Yordamlar
+-- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `bolumlereGoreOgrenciler`(IN `deparmentName` VARCHAR(75))
 BEGIN
@@ -78,21 +78,19 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `bolum_bilgi`
+-- Table structure for table `bolum_bilgi`
 --
 
 CREATE TABLE IF NOT EXISTS `bolum_bilgi` (
   `BolumKodu` int(11) NOT NULL,
-  `BolumAdi` varchar(75) NOT NULL,
-  PRIMARY KEY (`BolumKodu`)
+  `BolumAdi` varchar(75) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Tablo döküm verisi `bolum_bilgi`
+-- Dumping data for table `bolum_bilgi`
 --
 
 INSERT INTO `bolum_bilgi` (`BolumKodu`, `BolumAdi`) VALUES
-(0, 'Biyoloji'),
 (205, 'Kamu Yönetimi'),
 (611, 'İngilizce Öğretmenliği'),
 (701, 'İnşaat Mühendisliği'),
@@ -117,16 +115,17 @@ INSERT INTO `bolum_bilgi` (`BolumKodu`, `BolumAdi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı durumu `bolum_detay`
+-- Stand-in structure for view `bolum_detay`
 --
 CREATE TABLE IF NOT EXISTS `bolum_detay` (
 `BolumKodu` int(11)
 ,`BolumAdi` varchar(75)
 );
+
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `kitap_bilgi`
+-- Table structure for table `kitap_bilgi`
 --
 
 CREATE TABLE IF NOT EXISTS `kitap_bilgi` (
@@ -135,23 +134,18 @@ CREATE TABLE IF NOT EXISTS `kitap_bilgi` (
   `KitapAdi` varchar(100) NOT NULL,
   `YazarAdi` varchar(70) DEFAULT NULL,
   `YayinEvi` varchar(50) DEFAULT NULL,
-  `VarMi` tinyint(1) NOT NULL,
-  PRIMARY KEY (`KitapSeviyeNo`,`KitapNo`),
-  KEY `fk_kitap_bilgi_kitap_seviye_bilgi1_idx` (`KitapSeviyeNo`),
-  KEY `kit_adi` (`KitapAdi`),
-  KEY `yaz_adi` (`YazarAdi`),
-  KEY `yayin_evi` (`YayinEvi`)
+  `VarMi` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Tablo döküm verisi `kitap_bilgi`
+-- Dumping data for table `kitap_bilgi`
 --
 
 INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `YayinEvi`, `VarMi`) VALUES
 (0, 1, 'THE BLUE CAT CLUB', 'BERNARD SMITH', 'PENGUIN', 1),
 (0, 2, 'WHO WANTS TO BE A STAR', 'MARGARET IGGULDEN', 'LONGMAN', 1),
 (0, 3, 'STORIES OF CIMCIME', 'GULSUM CENGIZ', 'ATP', 1),
-(0, 4, 'GREEN ISLAND', 'ANTHONY EYRE', 'LONGMAN', 1),
+(0, 4, 'GREEN ISLAND', 'ANTHONY EYRE', 'LONGMAN', 0),
 (0, 5, 'GOOD DAY, BAD DAY', 'PAUL SHIPTON', 'PENGUIN', 1),
 (0, 6, 'GIRL ON A MOTORCYCLE', 'JOHN ESCOTT', 'OXFORD', 1),
 (0, 7, 'LET ME OUT', 'ANTONIETTE MOSES', 'CAMBRIDGE', 1),
@@ -159,7 +153,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (0, 9, 'NEWSPAPER CHASE', 'JOHN ESCOTT', 'PENGUIN', 1),
 (0, 10, 'THE LONG ROAD', 'ROD SMITH', 'PENGUIN', 1),
 (0, 11, 'WHAT A LOTTERY!', 'COLIN CAMPBELL', 'CAMBRIDGE', 1),
-(0, 12, 'THE HAT', 'JOHN ESCOTT', 'PENGUIN', 1),
+(0, 12, 'THE HAT', 'JOHN ESCOTT', 'PENGUIN', 0),
 (0, 13, 'KIM''S CHOICE', 'BRIGIT VINEY', 'PENGUIN', 1),
 (0, 14, 'KIM''S CHOICE', 'BRIGIT VINEY', 'PENGUIN', 1),
 (0, 15, 'KIM''S CHOICE', 'BRIGIT VINEY', 'PENGUIN', 1),
@@ -194,7 +188,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (0, 44, 'THE GIRL AT THE WINDOW', 'ANTONIETTE MOSES', 'CAMBRIDGE', 1),
 (0, 45, 'LET ME OUT', 'ANTONIETTE MOSES', 'CAMBRIDGE', 1),
 (0, 46, 'GOOD DAY, BAD DAY', 'PAUL SHIPTON', 'PENGUIN', 1),
-(0, 47, 'THE HAT', '', '', 1),
+(0, 47, 'THE HAT', '', '', 0),
 (0, 48, 'NEWSPAPER CHASE', '', '', 1),
 (0, 49, 'WHAT A LOTTERY!', '', '', 1),
 (0, 50, 'THE PENANG FILE', '', '', 1),
@@ -469,11 +463,11 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (2, 1, 'THE FIRST EMPEROR OF CHINA', 'JANE ROLLASAN', 'PENGUIN', 0),
 (2, 2, 'HAROLD AND MAUDE', 'COLIN HIGGINS', 'EASYREADERS', 1),
 (2, 3, 'STORIES FROM EDGAR ALLAN POE', 'EDGAR ALLAN POE', 'KAPADOKYA', 1),
-(2, 4, 'THE SCARLET PIMPERNEL', 'BARONESS EMMUSKA...', 'PENGUIN', 1),
+(2, 4, 'THE SCARLET PIMPERNEL', 'BARONESS EMMUSKA...', 'PENGUIN', 0),
 (2, 5, 'DON QUIXOTE', 'MIGUEL DE CERVANTES', 'PENGUIN', 1),
 (2, 6, 'NEW YORK CAFE', 'MICHAEL WEST', 'OXFORD', 1),
 (2, 7, 'DON QUIXOTE', 'MIGUEL DE CERVANTES', 'PENGUIN', 1),
-(2, 8, 'KONG', 'FRAN WALSH...', 'PENGUIN', 1),
+(2, 8, 'KONG', 'FRAN WALSH...', 'PENGUIN', 0),
 (2, 9, 'THE ESCAPE AND OTHER STORIES', 'W.SOMERSET MAUGHAM', 'HEINEMANN', 1),
 (2, 10, 'MEN IN BLACK', 'J.J.GARDNER', 'PENGUIN', 1),
 (2, 11, 'THE EARTQUAKE', 'ELIZABETH LAIRD', 'LONGMAN', 1),
@@ -685,7 +679,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (3, 3, 'WILD COUNTRY', 'PATRICIA ASPINALL', 'CAMBRIDGE', 1),
 (3, 4, 'THE LIFE OF ATATURK', 'MARGARET JOHNSON', 'METRO', 1),
 (3, 5, 'RING OF BRIGHT WATER', 'D.K. SWAN', 'PENGUIN', 1),
-(3, 6, 'THE TRUMPET-MAJOR', 'GAVIN MAXWELL', 'MACMILLAN', 1),
+(3, 6, 'THE TRUMPET-MAJOR', 'GAVIN MAXWELL', 'MACMILLAN', 0),
 (3, 7, 'EVERY PICTURE TELLS A STORY', 'THOMAS HARDY', 'STREAMLINE', 1),
 (3, 8, 'THE OUTSIDERS', 'BRIAN KEANEY', 'EASYREADERS', 1),
 (3, 9, 'THE CANTERBURY TALES', 'S.E. HINTON', 'LONGMAN', 1),
@@ -694,7 +688,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (3, 12, 'THE STAR ZOO', 'PETER VINEY', 'OXFORD', 1),
 (3, 13, 'HOW LIFE BEGAN', 'HARRY GILBERT', 'LONGMAN', 1),
 (3, 14, 'RAIN MAN', 'LEWIS JONES', 'PENGUIN', 1),
-(3, 15, 'ROMAN FEVER & THE OTHER TWO', 'LEONORE FLEISCHER', 'LA SPIGA', 1),
+(3, 15, 'ROMAN FEVER & THE OTHER TWO', 'LEONORE FLEISCHER', 'LA SPIGA', 0),
 (3, 16, 'SHORT STORIES FROM DR FINLAY''...', 'EDITH WHARTON', 'LONGMAN', 1),
 (3, 17, 'TALES OF TEN WORLDS', 'A.J. CRONIN', 'HEINEMANN', 1),
 (3, 18, 'WHO, SIR? ME. SIR?', 'ARTHUR C. CLARKE', 'OXFORD', 1),
@@ -930,7 +924,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (4, 6, 'CRIME STORY COLLECTION', 'ROBERT L. STEVENSON', 'PENGUIN', 1),
 (4, 7, 'THREE MEN IN A BOAT', 'SARA PARETSKY & OTHERS', 'OXFORD', 1),
 (4, 8, 'DESERT MOUNTAIN SEA', 'JEROME K. JEROME', 'OXFORD', 1),
-(4, 9, 'HOW GREEN WAS MY WALLET', 'SUE LEATHER', 'PENGUIN', 1),
+(4, 9, 'HOW GREEN WAS MY WALLET', 'SUE LEATHER', 'PENGUIN', 0),
 (4, 10, 'EVIL UNDER THE SUN', 'RICHARD LLEWELLYN', 'PENGUIN', 1),
 (4, 11, 'DEATH OF AN ENGLISHMAN', 'AGATHA CRISTIE', 'OXFORD', 1),
 (4, 12, 'ABOUT A BOY', 'MAGDELEN NABB', 'PENGUIN', 1),
@@ -1115,17 +1109,17 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (5, 2, 'EXPERIENCES OF TERROR', 'CHARLES DICKENS', 'NELSON', 1),
 (5, 3, 'WUTHERING HEIGHTS', 'ROLAND JOHN', 'BLACK CAT', 1),
 (5, 4, 'LITTLE WOMEN', 'EMILY BRONTE', 'KAPADOKYA', 1),
-(5, 5, 'WUTHERING HEIGHTS', 'LUISA MAY ALCOTT', 'BLACK CAT', 1),
+(5, 5, 'WUTHERING HEIGHTS', 'LUISA MAY ALCOTT', 'BLACK CAT', 0),
 (5, 6, 'DRIVE INTO DANGER', 'EMILY BRONTE', 'OXFORD', 1),
 (5, 7, 'THE ADVENTURES OF TOM SAWYER', 'ROSEMARY BORDER', 'LONGMAN', 1),
 (5, 8, 'DEADLOCK', 'MARK TWAIN', 'OXFORD', 1),
 (5, 9, 'AIRPORT', 'SARA PARETSKY', 'LONGMAN', 1),
-(5, 10, 'RIVER OF DREAMS', 'ARTHUR HAILEY', 'NUANCE', 1),
+(5, 10, 'RIVER OF DREAMS', 'ARTHUR HAILEY', 'NUANCE', 0),
 (5, 11, 'HEAT AND DUST', 'PHILIP VOYSEY', 'OXFORD', 1),
 (5, 12, 'KING SOLOMON''S MINES', 'RUTH PRAWER JHABVALA', 'WORDSWORTH', 1),
 (5, 13, 'BRAT FARRAR', 'H.RIDER HAGGARD', 'OXFORD', 1),
 (5, 14, 'THE LOST SHIP', 'JOSEPHINE TEY', 'HEINEMANN', 1),
-(5, 15, 'GREAT EXPECTATIONS', 'JAMESTOWN', 'OXFORD', 1),
+(5, 15, 'GREAT EXPECTATIONS', 'JAMESTOWN', 'OXFORD', 0),
 (5, 16, 'WUTHERING HEIGHTS', 'CHARLES DICKENS', 'OXFORD', 1),
 (5, 17, 'THE PELICAN BRIEF', 'EMILY BRONTE', 'PENGUIN', 1),
 (5, 18, 'THE BRIDE PRICE', 'JOHN GRISHAM', 'OXFORD', 1),
@@ -1219,7 +1213,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 (6, 1, 'THE TIME MACHINE', '', 'LONGMAN', 0),
 (6, 2, 'BRAVE NEW WORLD', 'H.G. WELLS', 'LONGMAN', 1),
 (6, 3, 'OLIVER TWIST', 'ALDOUS HUXLEY', 'OXFORD', 1),
-(6, 4, 'BRAVE NEW WORLD', 'CHARLES DICKENS', 'LONGMAN', 1),
+(6, 4, 'BRAVE NEW WORLD', 'CHARLES DICKENS', 'LONGMAN', 0),
 (6, 5, 'ROBINSON CRUSOE', 'ALDOUS HUXLEY', 'PENGUIN', 1),
 (6, 6, 'FOR YOUR EYES ONLY', 'DANIEL DEFOE', 'LONGMAN', 1),
 (6, 7, 'AMERICAN CLASSICS', 'IAN FLEMING', 'A REGENTS', 1),
@@ -1283,7 +1277,7 @@ INSERT INTO `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`, `KitapAdi`, `YazarAdi`, `
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı durumu `kitap_detay`
+-- Stand-in structure for view `kitap_detay`
 --
 CREATE TABLE IF NOT EXISTS `kitap_detay` (
 `KitapSeviyeNo` tinyint(4)
@@ -1295,20 +1289,20 @@ CREATE TABLE IF NOT EXISTS `kitap_detay` (
 ,`SeviyeNo` tinyint(4)
 ,`SeviyeAdi` varchar(30)
 );
+
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `kitap_seviye_bilgi`
+-- Table structure for table `kitap_seviye_bilgi`
 --
 
 CREATE TABLE IF NOT EXISTS `kitap_seviye_bilgi` (
   `SeviyeNo` tinyint(4) NOT NULL,
-  `SeviyeAdi` varchar(30) NOT NULL,
-  PRIMARY KEY (`SeviyeNo`)
+  `SeviyeAdi` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Tablo döküm verisi `kitap_seviye_bilgi`
+-- Dumping data for table `kitap_seviye_bilgi`
 --
 
 INSERT INTO `kitap_seviye_bilgi` (`SeviyeNo`, `SeviyeAdi`) VALUES
@@ -1324,41 +1318,38 @@ INSERT INTO `kitap_seviye_bilgi` (`SeviyeNo`, `SeviyeAdi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı durumu `kitap_seviye_detay`
+-- Stand-in structure for view `kitap_seviye_detay`
 --
 CREATE TABLE IF NOT EXISTS `kitap_seviye_detay` (
 `SeviyeNo` tinyint(4)
 ,`SeviyeAdi` varchar(30)
 );
+
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `kullanici_bilgi`
+-- Table structure for table `kullanici_bilgi`
 --
 
 CREATE TABLE IF NOT EXISTS `kullanici_bilgi` (
-  `KullaniciNo` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `KullaniciNo` tinyint(4) NOT NULL,
   `KullaniciTuruNo` tinyint(4) NOT NULL,
   `KullaniciAdi` varchar(20) NOT NULL,
-  `KullaniciSifre` varchar(100) NOT NULL,
-  PRIMARY KEY (`KullaniciNo`),
-  UNIQUE KEY `KullaniciAdi_UNIQUE` (`KullaniciAdi`),
-  KEY `fk_kullanici_bilgi_kullanici_turu_bilgi1_idx` (`KullaniciTuruNo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `KullaniciSifre` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
--- Tablo döküm verisi `kullanici_bilgi`
+-- Dumping data for table `kullanici_bilgi`
 --
 
 INSERT INTO `kullanici_bilgi` (`KullaniciNo`, `KullaniciTuruNo`, `KullaniciAdi`, `KullaniciSifre`) VALUES
-(2, 1, 'admin', 'admin'),
-(3, 2, 'librarian', 'qwer1234'),
-(10, 2, 'ersan', 'qwer1234');
+(2, 1, 'admin', '19048575014b19af831777db50e6c6df81078fc9'),
+(11, 2, 'librarian', '4bcf5419e091739485c205cde0ecbf9e6b2f87b4');
 
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı durumu `kullanici_detay`
+-- Stand-in structure for view `kullanici_detay`
 --
 CREATE TABLE IF NOT EXISTS `kullanici_detay` (
 `KullaniciTuruAdi` varchar(10)
@@ -1366,20 +1357,20 @@ CREATE TABLE IF NOT EXISTS `kullanici_detay` (
 ,`KullaniciNo` tinyint(4)
 ,`KullaniciSifre` varchar(100)
 );
+
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `kullanici_turu_bilgi`
+-- Table structure for table `kullanici_turu_bilgi`
 --
 
 CREATE TABLE IF NOT EXISTS `kullanici_turu_bilgi` (
   `KullaniciTuruNo` tinyint(4) NOT NULL,
-  `KullaniciTuruAdi` varchar(10) NOT NULL,
-  PRIMARY KEY (`KullaniciTuruNo`)
+  `KullaniciTuruAdi` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Tablo döküm verisi `kullanici_turu_bilgi`
+-- Dumping data for table `kullanici_turu_bilgi`
 --
 
 INSERT INTO `kullanici_turu_bilgi` (`KullaniciTuruNo`, `KullaniciTuruAdi`) VALUES
@@ -1389,39 +1380,43 @@ INSERT INTO `kullanici_turu_bilgi` (`KullaniciTuruNo`, `KullaniciTuruAdi`) VALUE
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `odunc`
+-- Table structure for table `odunc`
 --
 
 CREATE TABLE IF NOT EXISTS `odunc` (
-  `OduncNo` int(11) NOT NULL AUTO_INCREMENT,
+  `OduncNo` int(11) NOT NULL,
   `OgrenciNo` int(11) NOT NULL,
   `KitapSeviyeNo` tinyint(4) NOT NULL,
   `KitapNo` int(11) NOT NULL,
   `VerilisTarihi` date DEFAULT NULL,
   `PlanlananVerilisTarihi` date NOT NULL,
-  `TeslimEdilenTarihi` date DEFAULT NULL,
-  PRIMARY KEY (`OduncNo`),
-  KEY `fk_ogrenci_bilgi_has_kitap_bilgi_kitap_bilgi1_idx` (`KitapSeviyeNo`,`KitapNo`),
-  KEY `fk_ogrenci_bilgi_has_kitap_bilgi_ogrenci_bilgi1_idx` (`OgrenciNo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+  `TeslimEdilenTarihi` date DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
--- Tablo döküm verisi `odunc`
+-- Dumping data for table `odunc`
 --
 
 INSERT INTO `odunc` (`OduncNo`, `OgrenciNo`, `KitapSeviyeNo`, `KitapNo`, `VerilisTarihi`, `PlanlananVerilisTarihi`, `TeslimEdilenTarihi`) VALUES
-(1, 140701014, 0, 1, '2015-07-26', '2015-07-27', '2015-07-28'),
-(2, 140701014, 0, 2, '2015-08-03', '2015-08-04', '2015-08-03'),
-(3, 140701014, 0, 1, '2015-07-26', '2015-07-31', '2015-08-02'),
-(4, 140701022, 0, 3, '2015-08-17', '2015-08-19', '2015-08-25'),
-(5, 140709012, 0, 8, '2015-07-27', '2015-07-29', NULL),
-(6, 140701022, 0, 13, '2015-08-01', '2015-08-02', '2015-08-19'),
-(7, 140701022, 3, 25, '2015-08-05', '2015-08-07', '2015-08-04');
+(1, 120709021, 5, 5, '2015-10-06', '2006-10-20', '2015-10-06'),
+(2, 120709041, 5, 10, '2015-10-06', '2006-10-20', NULL),
+(3, 120709021, 5, 5, '2015-10-06', '2006-10-20', NULL),
+(4, 120709001, 1, 7, '2015-10-06', '2006-10-20', '2015-10-06'),
+(5, 120709027, 0, 4, '2015-10-06', '2006-10-20', NULL),
+(6, 120709021, 2, 8, '2015-10-06', '2006-10-20', NULL),
+(7, 120709001, 3, 15, '2015-10-06', '2006-10-20', NULL),
+(8, 120709041, 4, 9, '2015-10-06', '2006-10-20', NULL),
+(9, 120709027, 6, 4, '2015-10-06', '2006-10-20', NULL),
+(10, 120709041, 5, 15, '2015-10-06', '2006-10-20', NULL),
+(11, 120709041, 0, 12, '2015-10-06', '2006-10-20', NULL),
+(12, 120709001, 2, 4, '2015-10-06', '2006-10-20', NULL),
+(13, 120709027, 3, 6, '2015-10-06', '2006-10-20', NULL),
+(14, 120709001, 0, 47, '2015-10-06', '2015-08-06', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `ogrenci_bilgi`
+-- Table structure for table `ogrenci_bilgi`
 --
 
 CREATE TABLE IF NOT EXISTS `ogrenci_bilgi` (
@@ -1429,55 +1424,23 @@ CREATE TABLE IF NOT EXISTS `ogrenci_bilgi` (
   `OgrenciAdi` varchar(35) NOT NULL,
   `OgrenciSoyadi` varchar(35) NOT NULL,
   `OgrenciBolumKodu` int(11) NOT NULL,
-  `OgrenciSinif` varchar(10) NOT NULL,
-  PRIMARY KEY (`OgrenciNo`),
-  KEY `fk_ogrenci_bilgi_bolum_bilgi_idx` (`OgrenciBolumKodu`),
-  KEY `ogr_adi` (`OgrenciAdi`),
-  KEY `ogr_soyadi` (`OgrenciSoyadi`)
+  `OgrenciSinif` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Tablo döküm verisi `ogrenci_bilgi`
+-- Dumping data for table `ogrenci_bilgi`
 --
 
 INSERT INTO `ogrenci_bilgi` (`OgrenciNo`, `OgrenciAdi`, `OgrenciSoyadi`, `OgrenciBolumKodu`, `OgrenciSinif`) VALUES
-(140611017, 'Gizem', 'Mantar', 611, '102'),
-(140611033, 'Tuğba', 'Turan', 611, '103'),
-(140701004, 'Sercan', 'Akkuş', 701, '205'),
-(140701010, 'Kadem', 'Mulazımoğlu', 701, '209'),
-(140701014, 'Doğan Can', 'Uysal', 701, '201'),
-(140701015, 'Mustafa', 'Tanışan', 701, '208'),
-(140701018, 'Harun', 'Soytekin', 701, '208'),
-(140701020, 'Nazmiye', 'Demir', 701, '210'),
-(140701022, 'Mehmet Şafak', 'Atik', 701, '206'),
-(140701025, 'Fatima', 'Karabulut', 701, '208'),
-(140701036, 'Ferdi', 'Badruk', 701, '208'),
-(140707003, 'Hewad', 'Saad', 707, '101'),
-(140707018, 'Hatice', 'Yavaş', 707, '210'),
-(140707027, 'Rana', 'Salihoğlu', 707, '202'),
-(140709009, 'Fıkrat', 'Dadasov', 709, '210'),
-(140709012, 'Abdullah', 'Çalışır', 709, '208'),
-(140709023, 'Haydar', 'Urdoğan', 709, '201'),
-(140709030, 'Necim', 'Sadat', 709, '204'),
-(140711010, 'Musa', 'Özdemir', 711, '208'),
-(140711015, 'MehmetSait', 'Yelsiz', 711, '211'),
-(140711017, 'Ali', 'Dikkaya', 711, '210'),
-(140711021, 'Abdulrahman Qaıd', 'Al Hajrı', 711, '101'),
-(140711023, 'Muhammed', 'Çetin', 711, '206'),
-(140713013, 'Fulya', 'Toklucu', 713, '208'),
-(140715006, 'Merthan', 'Yeşiltepe', 715, '208'),
-(140715015, 'Halil İbrahim', 'Öz', 715, '205'),
-(140715021, 'Özden', 'Aydın', 715, '206'),
-(140715022, 'Zeki', 'Uzun', 715, '209'),
-(140715037, 'Hamza', 'Demirel', 715, '210'),
-(140904019, 'Kardelen', 'Şensoy', 904, '109'),
-(140911028, 'Elanur', 'Şügül', 911, '104'),
-(141601019, 'Kübra', 'Gündoğan', 1601, '104');
+(120709001, 'Mehmet Ersan', 'UZUN', 709, 'E-8'),
+(120709021, 'Muhammed Olcay', 'TERCANLI', 709, 'E-7'),
+(120709027, 'Eren', 'VURAL', 709, 'E-7'),
+(120709041, 'Mahmut', 'KOÇAKER', 709, 'E-7');
 
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı durumu `ogrenci_detay`
+-- Stand-in structure for view `ogrenci_detay`
 --
 CREATE TABLE IF NOT EXISTS `ogrenci_detay` (
 `OgrenciNo` int(11)
@@ -1488,10 +1451,11 @@ CREATE TABLE IF NOT EXISTS `ogrenci_detay` (
 ,`BolumKodu` int(11)
 ,`BolumAdi` varchar(75)
 );
+
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı `bolum_detay`
+-- Structure for view `bolum_detay`
 --
 DROP TABLE IF EXISTS `bolum_detay`;
 
@@ -1500,7 +1464,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı `kitap_detay`
+-- Structure for view `kitap_detay`
 --
 DROP TABLE IF EXISTS `kitap_detay`;
 
@@ -1509,7 +1473,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı `kitap_seviye_detay`
+-- Structure for view `kitap_seviye_detay`
 --
 DROP TABLE IF EXISTS `kitap_seviye_detay`;
 
@@ -1518,7 +1482,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı `kullanici_detay`
+-- Structure for view `kullanici_detay`
 --
 DROP TABLE IF EXISTS `kullanici_detay`;
 
@@ -1527,37 +1491,108 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı `ogrenci_detay`
+-- Structure for view `ogrenci_detay`
 --
 DROP TABLE IF EXISTS `ogrenci_detay`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ogrenci_detay` AS select `ogrenci_bilgi`.`OgrenciNo` AS `OgrenciNo`,`ogrenci_bilgi`.`OgrenciAdi` AS `OgrenciAdi`,`ogrenci_bilgi`.`OgrenciSoyadi` AS `OgrenciSoyadi`,`ogrenci_bilgi`.`OgrenciBolumKodu` AS `OgrenciBolumKodu`,`ogrenci_bilgi`.`OgrenciSinif` AS `OgrenciSinif`,`bolum_bilgi`.`BolumKodu` AS `BolumKodu`,`bolum_bilgi`.`BolumAdi` AS `BolumAdi` from (`ogrenci_bilgi` join `bolum_bilgi` on((`ogrenci_bilgi`.`OgrenciBolumKodu` = `bolum_bilgi`.`BolumKodu`)));
 
 --
--- Dökümü yapılmış tablolar için kısıtlamalar
+-- Indexes for dumped tables
 --
 
 --
--- Tablo kısıtlamaları `kitap_bilgi`
+-- Indexes for table `bolum_bilgi`
+--
+ALTER TABLE `bolum_bilgi`
+  ADD PRIMARY KEY (`BolumKodu`);
+
+--
+-- Indexes for table `kitap_bilgi`
+--
+ALTER TABLE `kitap_bilgi`
+  ADD PRIMARY KEY (`KitapSeviyeNo`,`KitapNo`),
+  ADD KEY `fk_kitap_bilgi_kitap_seviye_bilgi1_idx` (`KitapSeviyeNo`),
+  ADD KEY `kit_adi` (`KitapAdi`),
+  ADD KEY `yaz_adi` (`YazarAdi`),
+  ADD KEY `yayin_evi` (`YayinEvi`);
+
+--
+-- Indexes for table `kitap_seviye_bilgi`
+--
+ALTER TABLE `kitap_seviye_bilgi`
+  ADD PRIMARY KEY (`SeviyeNo`);
+
+--
+-- Indexes for table `kullanici_bilgi`
+--
+ALTER TABLE `kullanici_bilgi`
+  ADD PRIMARY KEY (`KullaniciNo`),
+  ADD UNIQUE KEY `KullaniciAdi_UNIQUE` (`KullaniciAdi`),
+  ADD KEY `fk_kullanici_bilgi_kullanici_turu_bilgi1_idx` (`KullaniciTuruNo`);
+
+--
+-- Indexes for table `kullanici_turu_bilgi`
+--
+ALTER TABLE `kullanici_turu_bilgi`
+  ADD PRIMARY KEY (`KullaniciTuruNo`);
+
+--
+-- Indexes for table `odunc`
+--
+ALTER TABLE `odunc`
+  ADD PRIMARY KEY (`OduncNo`),
+  ADD KEY `fk_ogrenci_bilgi_has_kitap_bilgi_kitap_bilgi1_idx` (`KitapSeviyeNo`,`KitapNo`),
+  ADD KEY `fk_ogrenci_bilgi_has_kitap_bilgi_ogrenci_bilgi1_idx` (`OgrenciNo`);
+
+--
+-- Indexes for table `ogrenci_bilgi`
+--
+ALTER TABLE `ogrenci_bilgi`
+  ADD PRIMARY KEY (`OgrenciNo`),
+  ADD KEY `fk_ogrenci_bilgi_bolum_bilgi_idx` (`OgrenciBolumKodu`),
+  ADD KEY `ogr_adi` (`OgrenciAdi`),
+  ADD KEY `ogr_soyadi` (`OgrenciSoyadi`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `kullanici_bilgi`
+--
+ALTER TABLE `kullanici_bilgi`
+  MODIFY `KullaniciNo` tinyint(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `odunc`
+--
+ALTER TABLE `odunc`
+  MODIFY `OduncNo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `kitap_bilgi`
 --
 ALTER TABLE `kitap_bilgi`
   ADD CONSTRAINT `fk_kitap_bilgi_kitap_seviye_bilgi1` FOREIGN KEY (`KitapSeviyeNo`) REFERENCES `kitap_seviye_bilgi` (`SeviyeNo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Tablo kısıtlamaları `kullanici_bilgi`
+-- Constraints for table `kullanici_bilgi`
 --
 ALTER TABLE `kullanici_bilgi`
   ADD CONSTRAINT `kullanici_bilgi_ibfk_1` FOREIGN KEY (`KullaniciTuruNo`) REFERENCES `kullanici_turu_bilgi` (`KullaniciTuruNo`);
 
 --
--- Tablo kısıtlamaları `odunc`
+-- Constraints for table `odunc`
 --
 ALTER TABLE `odunc`
   ADD CONSTRAINT `fk_ogrenci_bilgi_has_kitap_bilgi_kitap_bilgi1` FOREIGN KEY (`KitapSeviyeNo`, `KitapNo`) REFERENCES `kitap_bilgi` (`KitapSeviyeNo`, `KitapNo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_ogrenci_bilgi_has_kitap_bilgi_ogrenci_bilgi1` FOREIGN KEY (`OgrenciNo`) REFERENCES `ogrenci_bilgi` (`OgrenciNo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Tablo kısıtlamaları `ogrenci_bilgi`
+-- Constraints for table `ogrenci_bilgi`
 --
 ALTER TABLE `ogrenci_bilgi`
   ADD CONSTRAINT `fk_ogrenci_bilgi_bolum_bilgi` FOREIGN KEY (`OgrenciBolumKodu`) REFERENCES `bolum_bilgi` (`BolumKodu`) ON DELETE NO ACTION ON UPDATE NO ACTION;

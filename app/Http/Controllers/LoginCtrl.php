@@ -31,10 +31,10 @@ class LoginCtrl extends Controller{
                 session(["auth" => $userDB[0]->KullaniciTuruNo]);
                 session(["username" => $userDB[0]->KullaniciAdi]);
             }else {
-                echo "Authentication is not success.";
+                echo "<script>alert('Authentication is not success!');</script>";
             }
         }else {
-            echo "Authentication is not success.";
+            echo "<script>alert('Authentication is not success!');</script>";
         }
         return $this->check();
     }

@@ -54,7 +54,7 @@
                                 </ul> <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="/management/admin/reports"><i class="fa fa-files-o fa-fw"></i> Reports </a>
+                                <a href="/management/admin/advance-manage"><i class="fa fa-cogs fa-fw"></i> Advance Management </a>
                             </li>
                         </ul>
                     </div>

@@ -13,13 +13,15 @@ Route::get("/auth/logout", "LoginCtrl@getLogout");
 
 // Admin Page
 Route::get("/management/admin", "AdminCtrl@index");
-Route::get("/management/admin/reports", "AdminCtrl@reports");
 Route::get("/management/admin/user-management", "AdminCtrl@userManagement");
 Route::get("/management/admin/user-management/add", "AdminCtrl@userManagementAdd");
 Route::post("/management/admin/user-management/add", "AdminCtrl@postUserManagementAdd"); 
 Route::get("/management/admin/user-management/edit/{id}", "AdminCtrl@userManagementEdit");
 Route::post("/management/admin/user-management/edit/{id}", "AdminCtrl@postUserManagementEdit");
 Route::get("/management/admin/user-management/remove/{id}", "AdminCtrl@userManagementRemove");
+Route::get("/management/admin/advance-manage", "AdminCtrl@advanceManage");
+Route::get("/management/admin/advance/clearStudentRecords", "AdminCtrl@clearStudentRecords");
+Route::get("/management/admin/advance/clearCirculationRecords", "AdminCtrl@clearCirculationRecords");
 
 // Student Management
 Route::get("/management/student", "StudentCtrl@studentList");
