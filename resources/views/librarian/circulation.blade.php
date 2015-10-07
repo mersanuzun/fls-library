@@ -102,7 +102,7 @@
 </div>
 <div id="message">
     @if (session("message"))
-        <script>alert('The process is succesful');</script>
+        {{session("message")}}
     @endif
 </div>
 @endsection
