@@ -20,13 +20,15 @@ class LibrarianCtrl extends Controller{
                            DB::raw("kitap_bilgi.KitapNo and odunc.KitapSeviyeNo =" . "kitap_bilgi.KitapSeviyeNo"))
                     ->where("PlanlananVerilisTarihi", "<", $today)
                     ->whereNull("TeslimEdilenTarihi")
-                    ->get();
-        
+                    ->paginate(10);
         return view("librarian.index", ["undelivered" => $undelivered]);
     }
     public function circulation(){
         if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
-        return view("librarian.circulation");
+        $bookLevels = DB::table('kitap_seviye_bilgi')
+                ->get();
+        
+        return view("librarian.circulation", ["bookLevels" => $bookLevels]);
     }
     public function circulationControl(Request $r){
         if (!LoginCtrl::isEnter(2)) return redirect("/auth/login");
@@ -45,7 +47,7 @@ class LibrarianCtrl extends Controller{
         $startDate = date("Y-m-d");
         $estimatedFinishDate = $r->input("estimatedFinishDate");
         if (!is_numeric($bookNo) || !is_numeric($bookLevel) || !is_numeric($studentNo)){
-            session(["message" => "Hata"]);
+            session()->flash("message", "Please, enter valid data.");
             return;
         }
         $bookStatus = DB::table("kitap_bilgi")
@@ -53,9 +55,10 @@ class LibrarianCtrl extends Controller{
                                 " and KitapSeviyeNo = " . $bookLevel))->get();
         $studentStatus = DB::table("ogrenci_bilgi")
                         ->where("OgrenciNo", "=", $studentNo)->get();
+        $message = "";
         if ($studentStatus){
             if ($bookStatus){
-                if ($bookStatus[0]->VarMi == 0) $message = "The book is not in library.";
+                if ($bookStatus[0]->VarMi == 0) $message = "The book is not in library!";
                 else {
                     DB::table("odunc")
                             ->insert(
@@ -64,13 +67,13 @@ class LibrarianCtrl extends Controller{
                     DB::table("kitap_bilgi")
                         ->where("KitapNo", DB::raw($bookNo . " and KitapSeviyeNo = " . $bookLevel))
                         ->update(["VarMi"=>0]);
-                    $message = "The process is succesfull";
+                    $message = "The process is succesfull.";
                 }
             }else {
-                $message = "There is no such that book.";
+                $message = "There is no such that book!";
             }    
         }else {
-            $message = "There is no such that student.";
+            $message = "There is no such that student!";
         }
         session()->flash("message", $message);
     }
@@ -80,7 +83,7 @@ class LibrarianCtrl extends Controller{
         $studentNo = $r->input("deliveredStudentNo");
         $finishDate = date("Y-m-d");
         if (!is_numeric($bookNo) || !is_numeric($bookLevel) || !is_numeric($studentNo)){
-            session(["message" => "Hata"]);
+            session()->flash("message", "Please, enter valid data!");
             return;
         }
         $studentStatus = DB::table("ogrenci_bilgi")
@@ -88,9 +91,10 @@ class LibrarianCtrl extends Controller{
         $bookStatus = DB::table("kitap_bilgi")
                         ->where("KitapNo", DB::raw($bookNo . 
                                 " and KitapSeviyeNo = " . $bookLevel))->get();
+        $message = "There is no record like you entered!";
         if ($studentStatus){
             if ($bookStatus){
-                if ($bookStatus[0]->VarMi == 1) $this->err = "The book is in library.";
+                if ($bookStatus[0]->VarMi == 1) $this->err = "The book is in library!";
                 else {
                     $finishBook = DB::table("odunc")
                         ->where("OgrenciNo", DB::raw($studentNo . " and KitapSeviyeNo = ". $bookLevel. " and KitapNo = " . $bookNo))
@@ -101,18 +105,14 @@ class LibrarianCtrl extends Controller{
                     DB::table("kitap_bilgi")
                         ->where("KitapNo", DB::raw($bookNo . " and KitapSeviyeNo = " . $bookLevel))
                         ->update(["VarMi"=>1]);
-                    $message = "The process is succesfull";
+                    $message = "The process is succesfull.";
                 }
             }else {
-                $message = "There is no such that book.";
+                $message = "There is no such that book!";
             }
         }else{
-            $message = "There is no such that student";
+            $message = "There is no such that student!";
         }
         session()->flash("message", $message);
-    }
-    public function denemeDB(){
-        session(["message"=>"ersan"]);
-        return redirect("/auth/login")->with("message", "ersan");
     }
 }

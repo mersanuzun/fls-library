@@ -12,18 +12,24 @@
         <table class="table table-hover">
             <tr>
                 <td>
-                    <label for="bookLevel"> Book's Number </label>
+                    <label for="bookLevel"> Book Level </label>
                 </td>
                 <td>
-                    <input type="text" name="bookNo" class="form-control" placeholder="Book's Number" required="" autofocus="true">
+                    <select name="bookLevel" id="bookLevel"  class="form-control">
+                        @foreach ($bookLevels as $level)
+                        <option value="{{$level->SeviyeNo}}">
+                                {{$level->SeviyeAdi . "(" . $level->SeviyeNo . ")"}}
+                        </option>
+                        @endforeach
+                    </select>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label for="bookLevel"> Book Level </label>
+                    <label for="bookLevel"> Book's Number </label>
                 </td>
                 <td>
-                    <input type="text" name="bookLevel" class="form-control" placeholder="Book's Level" required="">
+                    <input type="text" name="bookNo" class="form-control" placeholder="Book's Number" required="" autofocus="true">
                 </td>
             </tr>
             <tr>
@@ -58,18 +64,24 @@
         <table class="table table-hover">
             <tr>
                 <td>
-                    <label for="teslimKitapNo"> Book's Number </label>
+                    <label for="deliveredBookLevel"> Book's Level </label>
                 </td>
                 <td>
-                    <input type="text" name="deliveredBookNo" class="form-control" placeholder="Book's Number" required="" maxlength="10">
+                    <select name="deliveredBookLevel" id="deliveredBookLevel"  class="form-control">
+                        @foreach ($bookLevels as $level)
+                        <option value="{{$level->SeviyeNo}}">
+                                {{$level->SeviyeAdi . "(" . $level->SeviyeNo . ")"}}
+                        </option>
+                        @endforeach
+                    </select>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label for="deliveredBookLevel"> Book's Level </label>
+                    <label for="teslimKitapNo"> Book's Number </label>
                 </td>
                 <td>
-                    <input type="text" name="deliveredBookLevel" class="form-control" placeholder="Book's Level" required="">
+                    <input type="text" name="deliveredBookNo" class="form-control" placeholder="Book's Number" required="" maxlength="10">
                 </td>
             </tr>
             <tr>

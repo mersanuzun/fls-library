@@ -26,10 +26,11 @@
             <td>{{$student->KitapSeviyeNo}}-{{$student->KitapNo}}</td> 
             <td>{{$student->KitapAdi}}</td>
             <td>{{$student->VerilisTarihi}}</td>
-            <td>{{$student->PlanlananVerilisTarihi}}</td>
+            <td>{{$student->PlanlananVerilisTarihi}}</td>  
         </tr>    
         @endforeach
     </table>
+    {!! $undelivered->render() !!}
 </div>
 @endif
 @endsection
