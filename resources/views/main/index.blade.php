@@ -29,7 +29,7 @@
             <div class="form-group">
                 <form action="/search" method="post" class="form-signin">
                    {!! csrf_field() !!}
-                    <label for="seviyeSec" class="form-control"> Choose Level </label>
+                    <label for="seviyeSec" id="seviyeSecLabel" class="form-control"> Choose Level </label>
                     <select name="seviyeSec" class="form-control">
                         @foreach ($bookLevels as $level)
                             <option value='{{$level->SeviyeNo}}'>{{$level->SeviyeAdi}} ({{$level->SeviyeNo}})</option>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <form action="/search" method="post" class="form-signin">
                     {!! csrf_field() !!}
-                    <label for="aranacakKelime" class="form-control"> Enter Author Name </label>
+                    <label for="aranacakYazar" id="aranacakYazarLabel" class="form-control"> Enter Author Name </label>
                     <input type="text" name="aranacakYazar" class="form-control" placeholder="Search by Author Name" autofocus required/>
                     <input type="checkbox" name="onlyAvailable" class=""/> <strong>Show Only Available Books</strong>   
                     <input type="submit" name="araButonuYazar" value="Search" class="btn btn-mmm btn-block"/>
